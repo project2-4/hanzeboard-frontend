@@ -1,0 +1,4 @@
+<div *ngIf= "loggedIn">
+  <p>dashboard works!</p>
+</div>
+<button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
