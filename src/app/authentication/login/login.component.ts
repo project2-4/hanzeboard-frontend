@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthenticationService,
               public router: Router,
               public formBuilder: FormBuilder) {
-    this.setMessage();
   }
 
   ngOnInit(){
@@ -26,17 +25,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-  }
-
   login(value) {
     this.message = 'Trying to log in ...';
     console.log('username: ' + value.username);
     console.log('password: ' + value.password);
 
     this.authService.login().subscribe(() => {
-      this.setMessage();
       if (this.authService.isLoggedIn) {
         const redirectUrl = '/dashboard';
         this.router.navigate([redirectUrl]);
@@ -46,6 +40,5 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.setMessage();
   }
 }
