@@ -10,7 +10,7 @@ import {AuthenticationService} from '../authentication.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  message: string;
+  loginError: boolean;
 
   constructor(public authService: AuthenticationService,
               public router: Router,
@@ -19,21 +19,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     this.form = this.formBuilder.group({
-      username: this.formBuilder.control('', Validators.compose(
-        [Validators.required, Validators.pattern('[\\w\\-\\s\\/]+')])),
+      email: this.formBuilder.control('', Validators.compose(
+        [Validators.required, Validators.pattern('^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$')])),
       password: this.formBuilder.control('', Validators.required)
     });
   }
 
   login(value) {
-    this.message = 'Trying to log in ...';
-    console.log('username: ' + value.username);
-    console.log('password: ' + value.password);
-
-    this.authService.login().subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        const redirectUrl = '/dashboard';
-        this.router.navigate([redirectUrl]);
+    this.authService.login(value.email, value.password).subscribe(() => {
+      if (!this.authService.getError() && this.authService.getLoggedIn()) {
+        this.loginError = false;
+        this.authService.isLoggedIn = true;
+        this.router.navigate(['/dashboard']);
+      }
+      else{
+        this.loginError = true;
       }
     });
   }
