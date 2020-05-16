@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './service-modules/authentication/login/login.component';
+import { LoginComponent } from './shared/services/authentication/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';

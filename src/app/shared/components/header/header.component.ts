@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../../service-modules/authentication/authentication.service';
+import {AuthenticationService} from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-header',

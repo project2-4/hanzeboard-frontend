@@ -1,6 +1,6 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Subject} from 'rxjs';
-import {AuthorizationService} from '../../service-modules/authorization/authorization.service';
+import {AuthorizationService} from '../services/authorization/authorization.service';
 
 @Directive({
   selector: '[appHasRole]'
