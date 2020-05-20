@@ -6,13 +6,13 @@ import {Observable, of} from 'rxjs';
 })
 export class AuthorizationService {
 
-  roles: string[];
+  role: string;
 
   constructor() {
-    this.roles = ['student', 'teacher', 'admin'];
+    this.role = 'teacher';
   }
 
-  getRoles(): Observable<string[]>{
-    return of(this.roles);
+  getRoles(): Observable<string>{
+    return of(this.role);
   }
 }

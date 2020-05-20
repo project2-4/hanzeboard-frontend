@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthenticationGuard} from '../../shared/guards/authentication.guard';
-import {DashboardOverviewComponent} from './dashboard-overview/dashboard-overview.component';
+import {AdminoverviewComponent} from './adminoverview/adminoverview.component';
+import {AdminComponent} from './admin/admin.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: AdminComponent,
     canActivate: [AuthenticationGuard],
     children: [
-      { path: '', component: DashboardOverviewComponent }
+      { path: '', component: AdminoverviewComponent }
     ]
   }
 ];
@@ -20,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class AdminRoutingModule { }

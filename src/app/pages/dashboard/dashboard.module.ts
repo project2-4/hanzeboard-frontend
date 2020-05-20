@@ -13,11 +13,11 @@ import { DashboardOverviewComponent } from './dashboard-overview/dashboard-overv
     DashboardComponent,
     DashboardOverviewComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    ReactiveFormsModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        ReactiveFormsModule,
+        SharedModule
+    ]
 })
 export class DashboardModule { }

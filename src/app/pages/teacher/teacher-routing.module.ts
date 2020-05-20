@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthenticationGuard} from '../../shared/guards/authentication.guard';
-import {DashboardOverviewComponent} from './dashboard-overview/dashboard-overview.component';
+import {TeacheroverviewComponent} from './teacheroverview/teacheroverview.component';
+import {TeacherComponent} from './teacher/teacher.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: TeacherComponent,
     canActivate: [AuthenticationGuard],
     children: [
-      { path: '', component: DashboardOverviewComponent }
+      { path: '', component: TeacheroverviewComponent }
     ]
   }
 ];
@@ -20,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class TeacherRoutingModule { }

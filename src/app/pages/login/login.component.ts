@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../authentication.service';
+import {AuthenticationService, JWTToken} from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -26,15 +26,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(value) {
-    this.authService.login(value.email, value.password).subscribe(() => {
-      if (!this.authService.getError() && this.authService.getLoggedIn()) {
-        this.loginError = false;
-        this.authService.isLoggedIn = true;
-        this.router.navigate(['/dashboard']);
-      }
-      else{
-        this.loginError = true;
-      }
+    this.authService.login(value.email, value.password).subscribe((data: any) => {
+      localStorage.setItem('jwt', JSON.stringify(data as JWTToken));
+      this.loginError = false;
+      this.authService.isLoggedIn = true;
+      this.router.navigate(['/dashboard']);
+    }, (err) => {
+      console.log(err);
+      this.loginError = true;
     });
   }
 

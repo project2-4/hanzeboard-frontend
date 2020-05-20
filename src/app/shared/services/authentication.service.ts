@@ -5,6 +5,12 @@ import { tap, delay } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
+export interface JWTToken {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,26 +24,13 @@ export class AuthenticationService {
     this.isLoggedIn = false;
   }
 
-  login(email: string, password: string): Observable<boolean> {
-    this.getJWTToken(email, password);
-    return of(this.error).pipe(delay(2500), tap(val => { if (!this.error) { this.isLoggedIn = true; }} ));
+  login(email: string, password: string): Observable<JWTToken> {
+    return this.http.post<JWTToken>('http://127.0.0.1:8000/api/auth/login', { email, password }) as Observable<JWTToken>;
   }
 
   logout(): void {
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
-  }
-
-  getJWTToken(email: string, password: string) {
-    this.http.post<any>('http://127.0.0.1:8000/api/auth/login',
-      { email, password }).subscribe({
-      next: (data) => { localStorage.setItem('jwt', JSON.stringify(data as object)); this.error = false; },
-      error: () => this.error = true
-    });
-  }
-
-  getError(): boolean {
-    return this.error;
   }
 
   checkLoggedIn() {
