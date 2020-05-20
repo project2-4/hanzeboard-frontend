@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li [ngClass]="{'nav-item active': this.router.url === '/dashboard'}">
+        <a class="nav-link" routerLink="../dashboard">Dashboard </a>
+      </li>
+      <li [ngClass]="{'nav-item active': this.router.url === '/grades'}">
+        <a class="nav-link" routerLink="../grades">Grades </a>
+      </li>
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="#">Action</a>
+          <a class="dropdown-item" routerLink="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="#">Something else here</a>
+        </div>
+      </li> -->
+      <li [ngClass]="{'nav-item active': this.router.url === '/courses'}">
+        <a class="nav-link" routerLink="../courses">Courses</a>
+      </li>
+      <li [ngClass]="{'nav-item active': this.router.url === '/teacher'}" *appHasRole="'teacher'">
+        <a class="nav-link" routerLink="../teacher">Teachers Overview</a>
+      </li>
+      <li [ngClass]="{'nav-item active': this.router.url === '/admin'}" *appHasRole="'admin'">
+        <a class="nav-link" routerLink="../admin">Admin Overview</a>
+      </li>
+    </ul>
+    <form [formGroup] = "form" class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <div class="logout-button">
+      <button class="btn btn-secondary" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
