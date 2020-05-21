@@ -25,9 +25,15 @@ export class AuthenticationGuard implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if (this.authService.checkLoggedIn()) { return true; }
+    if (this.authService.checkLoggedIn()) {
+
+      console.log(true);
+      return true;
+    }
+
     this.previousRoute = url;
     this.router.navigate(['/login']);
+    console.log(false);
     return false;
   }
 }

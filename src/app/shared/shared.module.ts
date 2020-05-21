@@ -13,6 +13,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatHeaderRowDefDirective} from './directives/mat-header-row-def.directive';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 
@@ -33,7 +34,8 @@ import {MatInputModule} from '@angular/material/input';
     MatTableModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent,

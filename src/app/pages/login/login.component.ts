@@ -27,10 +27,9 @@ export class LoginComponent implements OnInit {
 
   login(value) {
     this.authService.login(value.email, value.password).subscribe((data: any) => {
-      localStorage.setItem('jwt', JSON.stringify(data as JWTToken));
       this.loginError = false;
       this.authService.isLoggedIn = true;
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['']);
     }, (err) => {
       console.log(err);
       this.loginError = true;
