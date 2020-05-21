@@ -34,6 +34,8 @@ export class AuthenticationService {
   }
 
   checkLoggedIn() {
+    if(localStorage.getItem('jwt') === null) return false;
+
     return (JSON.parse(localStorage.getItem('jwt')).expires_in as number > 0 && this.isLoggedIn);
   }
 
