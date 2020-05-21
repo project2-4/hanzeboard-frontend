@@ -41,4 +41,8 @@ export class AuthenticationService {
   getLoggedIn(){
     return this.isLoggedIn;
   }
+
+  getToken() {
+    return JSON.parse(localStorage.getItem('jwt')).access_token;
+  }
 }
