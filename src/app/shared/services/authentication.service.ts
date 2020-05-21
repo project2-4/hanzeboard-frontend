@@ -30,13 +30,12 @@ export class AuthenticationService {
 
   logout(): void {
     this.isLoggedIn = false;
+    localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
   }
 
   checkLoggedIn() {
-    if(localStorage.getItem('jwt') === null) return false;
-
-    return (JSON.parse(localStorage.getItem('jwt')).expires_in as number > 0 && this.isLoggedIn);
+    return localStorage.getItem('jwt') !== null;
   }
 
   getLoggedIn(){

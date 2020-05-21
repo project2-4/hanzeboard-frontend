@@ -13,14 +13,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SharedModule} from './shared/shared.module';
-import { DataTableComponent } from './shared/components/data-table/data-table.component';
-import { CoursesComponent } from './pages/courses/courses/courses.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CoursesComponent,
   ],
   imports: [
     BrowserModule,
