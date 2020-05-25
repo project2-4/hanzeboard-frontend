@@ -25,15 +25,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(value) {
-    this.authService.login(value.email, value.password).subscribe((data: any) => {
-      this.loginError = false;
-      this.authService.isLoggedIn = true;
-      this.router.navigate(['']);
-    }, (err) => {
-      console.log(err);
+  async login(value) {
+    const loginSucceeded = await this.authService.login(value.email, value.password);
+
+    if(loginSucceeded) {
+      await this.router.navigate(['']);
+      return;
+    } else {
       this.loginError = true;
-    });
+    }
   }
 
   logout() {

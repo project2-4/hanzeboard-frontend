@@ -8,32 +8,32 @@ import {AuthorizationService} from '../services/authorization.service';
 })
 export class AuthenticationGuard implements CanActivate {
 
-  previousRoute: string;
-
   constructor(private authService: AuthenticationService,
               private authorService: AuthorizationService,
               private router: Router) {}
 
+
+  /**
+   * Checks if the user can activate this route
+   *
+   * @param next
+   * @param state
+   */
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const url: string = state.url;
-    return this.checkLogin(url);
-  }
-
-  canLoad(route: Route): boolean {
-    const url = `/${route.path}`;
-    return this.checkLogin(url);
-  }
-
-  checkLogin(url: string): boolean {
-    if (this.authService.checkLoggedIn()) {
-
-      console.log(true);
+    if (this.authService.isLoggedIn) {
       return true;
     }
 
-    this.previousRoute = url;
     this.router.navigate(['/login']);
-    console.log(false);
     return false;
+  }
+
+  /**
+   * Check if the module is allowed to be lazy loaded
+   *
+   * @param route
+   */
+  canLoad(route: Route): boolean {
+    return this.authService.isLoggedIn;
   }
 }

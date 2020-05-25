@@ -16,10 +16,6 @@
                 <label *ngIf = "loginError" class="error"> Invalid credentials, password/ email is incorrect. </label>
               </div>
               <input type="submit" class="btn btn-info btn-md" id="submit" value="submit" *ngIf="!authService.isLoggedIn" [disabled]="!form.valid">
-              <p>{{'Logged ' + (this.authService.getLoggedIn() ? 'in' : 'out')}}</p>
-              <p>
-                <button (click)="logout()" *ngIf="authService.getLoggedIn()">Logout</button>
-              </p>
             </form>
           </div>
       </div>
