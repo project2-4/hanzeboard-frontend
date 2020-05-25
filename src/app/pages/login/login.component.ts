@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
         [Validators.required, Validators.pattern('^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$')])),
       password: this.formBuilder.control('', Validators.required)
     });
+
+    if(this.authService.isLoggedIn) {
+      this.router.navigate(['']);
+    }
   }
 
   async login(value) {

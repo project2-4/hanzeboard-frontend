@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route, CanLoad} from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import {AuthorizationService} from '../services/authorization.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationGuard implements CanActivate {
+export class IsLoggedInGuard implements CanActivate  {
 
   constructor(private authService: AuthenticationService,
               private authorService: AuthorizationService,
@@ -26,14 +26,5 @@ export class AuthenticationGuard implements CanActivate {
 
     this.router.navigate(['/login']);
     return false;
-  }
-
-  /**
-   * Check if the module is allowed to be lazy loaded
-   *
-   * @param route
-   */
-  canLoad(route: Route): boolean {
-    return this.authService.isLoggedIn;
   }
 }

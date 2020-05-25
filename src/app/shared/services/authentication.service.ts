@@ -23,6 +23,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private router: Router) {
     if(localStorage.getItem('jwt') !== null) {
+      // TODO: check if JWT is expired
       this.jwt = JSON.parse(localStorage.getItem('jwt'));
     }
   }
@@ -36,6 +37,7 @@ export class AuthenticationService {
   public async login(email: string, password: string): Promise<boolean> {
     try {
       this.jwt = await this.http.post<JWTToken>('http://127.0.0.1:8000/api/auth/login', { email, password }).toPromise();
+      localStorage.setItem('jwt', JSON.stringify(this.jwt));
       return true;
     } catch (e) {
       return false;
