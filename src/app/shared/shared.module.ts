@@ -15,6 +15,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { IsStaffDirective } from './directives/is-staff.directive';
+import { DragDropSearchComponent } from './components/drag-drop-search/drag-drop-search.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 
 
@@ -27,6 +29,7 @@ import { IsStaffDirective } from './directives/is-staff.directive';
     DataTableComponent,
     MatHeaderRowDefDirective,
     IsStaffDirective,
+    DragDropSearchComponent,
   ],
   imports: [
     CommonModule,
@@ -37,15 +40,17 @@ import { IsStaffDirective } from './directives/is-staff.directive';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    NgbModule
+    NgbModule,
+    DragDropModule
   ],
-  exports: [
-    HeaderComponent,
-    FooterComponent,
-    ErrorPageComponent,
-    HasRoleDirective,
-    IsStaffDirective,
-    DataTableComponent,
-  ]
+    exports: [
+        HeaderComponent,
+        FooterComponent,
+        ErrorPageComponent,
+        HasRoleDirective,
+        IsStaffDirective,
+        DataTableComponent,
+        DragDropSearchComponent,
+    ]
 })
 export class SharedModule { }

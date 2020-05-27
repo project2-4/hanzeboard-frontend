@@ -1,0 +1,35 @@
+<div class="row mb-4">
+  <div class="col">
+    <label for="select-course">Selecteer course</label>
+    <select id="select-course" class="form-control">
+      <option value="" selected disabled>Selecteer course</option>
+    </select>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label for="select-subject">Selecteer vak</label>
+    <select id="select-subject" class="form-control">
+      <option value="" selected disabled>Selecteer vak</option>
+    </select>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <!-- in app.component.html -->
+    <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [accept]="'text/csv'">
+      <ngx-dropzone-label>Sleep CSV bestand hierheen!</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <button class="btn btn-block btn-primary">Importeren</button>
+  </div>
+</div>

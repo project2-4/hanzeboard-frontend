@@ -16,6 +16,7 @@ import {SharedModule} from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthTokenGrabberInterceptor} from "./shared/interceptors/authTokenGrabber.interceptor";
 import {AuthTokenInjectInterceptor} from "./shared/interceptors/authTokenInject.interceptor";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
