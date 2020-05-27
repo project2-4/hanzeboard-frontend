@@ -7,15 +7,18 @@ import { CourseOverviewComponent } from './pages/course-overview/course-overview
 import {MatTableModule} from "@angular/material/table";
 import { AddCourseComponent } from './pages/add-course/add-course.component';
 import {SharedModule} from "../../../../shared/shared.module";
+import { ImportGradesComponent } from './pages/import-grades/import-grades.component';
+import {NgxDropzoneModule} from "ngx-dropzone";
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent],
   imports: [
     CommonModule,
     RouterModule,
     StaffRoutingModule,
     MatTableModule,
-    SharedModule
+    SharedModule,
+    NgxDropzoneModule
   ]
 })
 export class StaffModule { }

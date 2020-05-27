@@ -16,7 +16,7 @@ export class DragDropSearchComponent implements OnInit {
   listOne = [];
 
   @Input('listTwo')
-  listTwo = [];
+  listTwo = ['a', 'b', 'c'];
 
   public searchOne$: Subject<string> = new Subject<string>();
   public searchTwo$: Subject<string> = new Subject<string>();
