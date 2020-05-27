@@ -10,12 +10,10 @@ const routes: Routes = [
   { path: 'login',
     component: LoginComponent,
   },
-
   { path: '',
     canActivate: [IsLoggedInGuard],
     loadChildren: () => import('./pages/boards/boards.module').then(m => m.BoardsModule)
   },
-
   { path: '**', component: ErrorPageComponent },
 ];
 
