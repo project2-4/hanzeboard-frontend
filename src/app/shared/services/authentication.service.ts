@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {AuthorizationService} from './authorization.service';
 
 export interface JWTToken {
   access_token: string;
@@ -21,8 +20,8 @@ export class AuthenticationService {
    */
   private jwt: JWTToken = null;
 
-  constructor(private http: HttpClient, private router: Router) {
-    if(localStorage.getItem('jwt') !== null) {
+  constructor(private http: HttpClient, private router: Router, private authorizationService: AuthorizationService) {
+    if (localStorage.getItem('jwt') !== null) {
       // TODO: check if JWT is expired
       this.jwt = JSON.parse(localStorage.getItem('jwt'));
     }
@@ -40,6 +39,7 @@ export class AuthenticationService {
       localStorage.setItem('jwt', JSON.stringify(this.jwt));
       return true;
     } catch (e) {
+      console.log(e);
       return false;
     }
   }

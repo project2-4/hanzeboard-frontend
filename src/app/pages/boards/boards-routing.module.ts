@@ -5,6 +5,7 @@ import {DashboardOverviewComponent} from "./pages/dashboard-overview/dashboard-o
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {GradesComponent} from "./pages/grades/grades.component";
 import {StaffComponent} from "./pages/staff/staff.component";
+import {IsStaffGuard} from '../../shared/guards/is-staff.guard';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'staff',
+        canActivate: [IsStaffGuard],
         component: StaffComponent,
         loadChildren: () => import('./pages/staff/staff.module').then(m => m.StaffModule)
       }
