@@ -14,6 +14,7 @@ import {MatHeaderRowDefDirective} from './directives/mat-header-row-def.directiv
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { IsStaffDirective } from './directives/is-staff.directive';
 
 
 
@@ -25,6 +26,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     HasRoleDirective,
     DataTableComponent,
     MatHeaderRowDefDirective,
+    IsStaffDirective,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     FooterComponent,
     ErrorPageComponent,
     HasRoleDirective,
+    IsStaffDirective,
     DataTableComponent,
   ]
 })

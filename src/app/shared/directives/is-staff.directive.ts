@@ -2,11 +2,11 @@ import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from
 import {AuthorizationService} from '../services/authorization.service';
 
 @Directive({
-  selector: '[appHasRole]'
+  selector: '[appIsStaff]'
 })
-export class HasRoleDirective implements OnInit, OnDestroy {
+export class IsStaffDirective implements OnInit, OnDestroy {
 
-  @Input() appHasRole: string;
+  @Input() appIsStaff: string;
   isVisible = false;
 
   constructor(
@@ -15,10 +15,9 @@ export class HasRoleDirective implements OnInit, OnDestroy {
     private authorizationService: AuthorizationService
   ) {}
 
-  // Inspiration: https://blog.strongbrew.io/display-a-component-based-on-role
   ngOnInit() {
-    const role = this.authorizationService.getRole();
-    if (this.appHasRole.includes(role)) {
+    const permission = this.authorizationService.getProfileType();
+    if (permission === this.appIsStaff) {
       if (!this.isVisible) {
         this.isVisible = true;
         this.viewContainerRef.createEmbeddedView(this.templateRef);
@@ -30,4 +29,5 @@ export class HasRoleDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {}
+
 }
