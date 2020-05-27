@@ -6,6 +6,7 @@ import {CoursesComponent} from "./pages/courses/courses.component";
 import {GradesComponent} from "./pages/grades/grades.component";
 import {StaffComponent} from "./pages/staff/staff.component";
 import {IsStaffGuard} from '../../shared/guards/is-staff.guard';
+import {ErrorPageComponent} from '../../shared/components/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,11 @@ const routes: Routes = [
         component: StaffComponent,
         loadChildren: () => import('./pages/staff/staff.module').then(m => m.StaffModule)
       }
-    ]
+    ],
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent,
   }
 ];
 
