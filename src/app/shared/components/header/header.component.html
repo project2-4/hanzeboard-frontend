@@ -17,7 +17,7 @@
         <a class="nav-link" routerLink="/courses">Courses</a>
       </li>
 
-      <li class="nav-item" *appHasRole="'staff'" [routerLinkActive]="['active']">
+      <li class="nav-item" *appIsStaff="'staff'" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/staff">Staff</a>
       </li>
     </ul>
