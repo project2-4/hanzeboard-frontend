@@ -13,10 +13,6 @@
         <a class="nav-link" routerLink="/grades">Grades</a>
       </li>
 
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/courses">Courses</a>
-      </li>
-
       <li class="nav-item" *appIsStaff="'staff'" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/staff">Staff</a>
       </li>
