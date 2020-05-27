@@ -16,23 +16,18 @@ export class HasRoleDirective implements OnInit, OnDestroy {
     private authorizationService: AuthorizationService
   ) {}
 
-  // Inspiration: https://blog.strongbrew.io/display-a-component-based-on-role/
+  // Inspiration: https://blog.strongbrew.io/display-a-component-based-on-role
   ngOnInit() {
-    this.authorizationService.getRoles()
-      .subscribe(permission => {
-        if (permission === 'student') {
-          this.viewContainerRef.clear();
-        }
-        if (permission === this.appHasRole || permission === 'admin') {
-          if (!this.isVisible) {
-            this.isVisible = true;
-            this.viewContainerRef.createEmbeddedView(this.templateRef);
-          }
-        } else {
-          this.isVisible = false;
-          this.viewContainerRef.clear();
-        }
-      });
+    const permission = this.authorizationService.getProfileType();
+    if (permission === this.appHasRole) {
+      if (!this.isVisible) {
+        this.isVisible = true;
+        this.viewContainerRef.createEmbeddedView(this.templateRef);
+      }
+    } else {
+      this.isVisible = false;
+      this.viewContainerRef.clear();
+    }
   }
 
   ngOnDestroy() {}

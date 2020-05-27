@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService, JWTToken} from '../../shared/services/authentication.service';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -24,14 +25,13 @@ export class LoginComponent implements OnInit {
       password: this.formBuilder.control('', Validators.required)
     });
 
-    if(this.authService.isLoggedIn) {
+    if (this.authService.isLoggedIn) {
       this.router.navigate(['']);
     }
   }
 
   async login(value) {
     const loginSucceeded = await this.authService.login(value.email, value.password);
-
     if (loginSucceeded) {
       await this.router.navigate(['']);
       return;
