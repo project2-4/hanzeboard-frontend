@@ -1,1 +1,39 @@
-<p>add-course works!</p>
+<div class="row mb-4">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Course naam">
+  </div>
+</div>
+
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Docenten</label>
+    <app-drag-drop-search></app-drag-drop-search>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Klassen</label>
+    <app-drag-drop-search></app-drag-drop-search>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Indivuele studenten</label>
+    <app-drag-drop-search></app-drag-drop-search>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Vakken</label>
+    <div class="row">
+      <div class="col">
+        <input *ngFor="let x of this.arrayOf(this.amountOfSubjects); let i = index" type="text" class="form-control mb-2" [placeholder]="'Vak ' + (i + 1)">
+        <button (click)="increaseAmountOfSubjects()" class="form-control">Nieuw vak</button>
+      </div>
+    </div>
+  </div>
+</div>

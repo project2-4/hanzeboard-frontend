@@ -6,6 +6,7 @@ import {StaffRoutingModule} from "./staff-routing.module";
 import { CourseOverviewComponent } from './pages/course-overview/course-overview.component';
 import {MatTableModule} from "@angular/material/table";
 import { AddCourseComponent } from './pages/add-course/add-course.component';
+import {SharedModule} from "../../../../shared/shared.module";
 
 @NgModule({
   declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent],
@@ -13,7 +14,8 @@ import { AddCourseComponent } from './pages/add-course/add-course.component';
     CommonModule,
     RouterModule,
     StaffRoutingModule,
-    MatTableModule
+    MatTableModule,
+    SharedModule
   ]
 })
 export class StaffModule { }

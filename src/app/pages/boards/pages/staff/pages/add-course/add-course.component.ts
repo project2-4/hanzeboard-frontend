@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCourseComponent implements OnInit {
 
+  public amountOfSubjects: number = 3;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  public arrayOf(n) {
+    return new Array(n);
+  }
+
+  public increaseAmountOfSubjects() {
+    this.amountOfSubjects++;
+  }
 }
