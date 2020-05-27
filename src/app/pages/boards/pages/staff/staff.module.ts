@@ -5,9 +5,10 @@ import {RouterModule} from "@angular/router";
 import {StaffRoutingModule} from "./staff-routing.module";
 import { CourseOverviewComponent } from './pages/course-overview/course-overview.component';
 import {MatTableModule} from "@angular/material/table";
+import { AddCourseComponent } from './pages/add-course/add-course.component';
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent],
   imports: [
     CommonModule,
     RouterModule,

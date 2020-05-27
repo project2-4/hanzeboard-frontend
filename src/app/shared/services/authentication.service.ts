@@ -62,6 +62,13 @@ export class AuthenticationService {
     return this.jwt.access_token;
   }
 
+  public set accessToken(token: string) {
+    if(this.jwt) {
+      this.jwt.access_token = token;
+      localStorage.setItem('jwt', JSON.stringify(this.jwt));
+    }
+  }
+
   /**
    * Check if the user is logged in
    */
