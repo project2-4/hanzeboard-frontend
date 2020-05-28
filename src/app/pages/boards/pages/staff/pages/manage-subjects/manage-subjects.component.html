@@ -1,6 +1,6 @@
-<button class="btn btn-primary" routerLink="/staff/courses/create">Nieuwe course</button>
+<button class="btn btn-primary" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/add'">Nieuw vak</button>
 
-<table mat-table [dataSource]="courses" class="full-width-table">
+<table mat-table [dataSource]="subjects" class="full-width-table">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Naam</th>
     <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
@@ -10,10 +10,7 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let row">
       <div class="d-flex justify-content-end">
-        <button class="btn btn-info mr-1" title="Vakken beheren" [routerLink]="'/staff/manage-subjects/' + row.id">
-          <i class="fas fa-tasks"></i>
-        </button>
-        <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/courses/' + row.id + '/edit'">
+        <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/edit/' + row.id">
           <i class="fas fa-edit"></i>
         </button>
         <button class="btn btn-danger" title="Verwijder course">

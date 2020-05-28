@@ -3,7 +3,11 @@ import {NgModule} from "@angular/core";
 import {CourseOverviewComponent} from "./pages/course-overview/course-overview.component";
 import {AddCourseComponent} from "./pages/add-course/add-course.component";
 import {ImportGradesComponent} from "./pages/import-grades/import-grades.component";
-import {ReportSicknessComponent} from "./pages/report-sickness/report-sickness.component";
+import {ManageSubjectsComponent} from "./pages/manage-subjects/manage-subjects.component";
+import {AddSubjectComponent} from "./pages/add-subject/add-subject.component";
+import {EditSubjectComponent} from "./pages/edit-subject/edit-subject.component";
+import {EditCourseComponent} from "./pages/edit-course/edit-course.component";
+import {ReportAbsentComponent} from "./pages/report-absent/report-absent.component";
 
 const routes: Routes = [
   {
@@ -14,17 +18,30 @@ const routes: Routes = [
     path: 'courses/create',
     component: AddCourseComponent
   },
-
+  {
+    path: 'courses/:courseId/edit',
+    component: EditCourseComponent
+  },
+  {
+    path: 'manage-subjects/:courseId',
+    component: ManageSubjectsComponent
+  },
+  {
+    path: 'manage-subjects/:courseId/subjects/add',
+    component: AddSubjectComponent
+  },
+  {
+    path: 'manage-subjects/:courseId/subjects/edit/:subjectId',
+    component: EditSubjectComponent
+  },
   {
     path: 'import-grades',
     component: ImportGradesComponent
   },
-
   {
-    path: 'report-sickness',
-    component: ReportSicknessComponent,
+    path: 'report-absent',
+    component: ReportAbsentComponent,
   },
-
   {
     path: '',
     redirectTo: 'courses/overview'

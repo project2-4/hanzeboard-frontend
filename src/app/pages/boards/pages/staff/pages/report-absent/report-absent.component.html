@@ -9,9 +9,9 @@
 
 <div class="row mb-4">
   <div class="col">
-    <label for="select-teacher">Ziek tot en met</label>
+    <label for="select-teacher">Tot en met</label>
     <input class="form-control" placeholder="yyyy-mm-dd" (click)="d.toggle()"
-           name="dp" [(ngModel)]="sicknessDate" ngbDatepicker #d="ngbDatepicker">
+           name="dp" [(ngModel)]="untillDate" ngbDatepicker #d="ngbDatepicker">
   </div>
 </div>
 
@@ -25,6 +25,6 @@
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary">Ziekmelden</button>
+    <button class="btn btn-block btn-primary">Absent melden</button>
   </div>
 </div>
