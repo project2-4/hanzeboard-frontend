@@ -9,14 +9,18 @@ import { AddCourseComponent } from './pages/add-course/add-course.component';
 import {SharedModule} from "../../../../shared/shared.module";
 import { ImportGradesComponent } from './pages/import-grades/import-grades.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
-import { ReportSicknessComponent } from './pages/report-sickness/report-sickness.component';
 
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { ManageSubjectsComponent } from './pages/manage-subjects/manage-subjects.component';
+import { AddSubjectComponent } from './pages/add-subject/add-subject.component';
+import { EditSubjectComponent } from './pages/edit-subject/edit-subject.component';
+import { EditCourseComponent } from './pages/edit-course/edit-course.component';
+import { ReportAbsentComponent } from './pages/report-absent/report-absent.component';
 
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ReportSicknessComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent],
   imports: [
     CommonModule,
     RouterModule,

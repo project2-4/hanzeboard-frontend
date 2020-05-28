@@ -18,6 +18,15 @@
 
 <div class="row mb-4">
   <div class="col">
+    <label for="select-assignment">Selecteer opdracht</label>
+    <select id="select-assignment" class="form-control">
+      <option value="" selected disabled>Selecteer opdracht</option>
+    </select>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
     <!-- in app.component.html -->
     <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [accept]="'text/csv'">
       <ngx-dropzone-label>Sleep CSV bestand hierheen!</ngx-dropzone-label>
