@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-subject',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectComponent implements OnInit {
 
-  constructor() { }
+  subjectId: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.subjectId = this.getURL();
+  }
+
+  getURL(){
+    const url = this.router.routerState.snapshot.url;
+    const id = url.substring('courses/'.length + 1, url.lastIndexOf('/'));
+    return url.substr('courses/'.length + id.length + 2);
   }
 
 }

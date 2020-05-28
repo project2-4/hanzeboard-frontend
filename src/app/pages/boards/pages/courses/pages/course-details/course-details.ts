@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-course-test',
@@ -11,12 +11,13 @@ export class CourseDetailsComponent implements OnInit {
   id: string;
 
   subjects = ['Algorithms and Datastructures', 'OOP3 and Design Patterns', 'Academic Writing', 'Project Software Engineering'];
-  codes = ['2301-ADS', '2302-OOP3', '2303-AW', '2304-PSWE'];
+  codes = ['1', '2', '3', '4'];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
+    const url = this.router.routerState.snapshot.url;
+    this.id = url.substring('courses/'.length + 1, url.lastIndexOf('/'));
   }
 
 }
