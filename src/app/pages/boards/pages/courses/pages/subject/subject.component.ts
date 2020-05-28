@@ -22,13 +22,15 @@ export class SubjectComponent implements OnInit {
     // The ActivatedRoute dies with the routed component.
     this.route.paramMap.subscribe(params => {
       this.subject = parseInt(params.get('subject'), 10);
+      this.loadSubject(this.subject);
     });
+  }
 
-    const url = `${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}`;
-    const request = await this.httpClient.get<any>(url).toPromise();
+  loadSubject(subject: number) {
+    const url = `${environment.apiEndpoint}/courses/${this.course}/subjects/${subject}`;
 
-    this.data = request.message;
-
-    console.log(this.data);
+    this.httpClient.get<any>(url).toPromise().then((res) => {
+      this.data = res.message;
+    });
   }
 }

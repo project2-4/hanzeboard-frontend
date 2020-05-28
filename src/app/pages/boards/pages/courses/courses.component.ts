@@ -21,7 +21,5 @@ export class CoursesComponent implements OnInit {
     const request = await this.httpClient.get<any>(url).toPromise();
 
     this.subjects = request.message;
-
-    console.log(request.message);
   }
 }
