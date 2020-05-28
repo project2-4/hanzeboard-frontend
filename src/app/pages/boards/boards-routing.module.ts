@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'courses',
+        path: 'courses/:course',
         component: CoursesComponent,
         loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule)
       },
