@@ -1,12 +1,22 @@
-import {RouterModule, Routes} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {CourseTestComponent} from "./pages/course-test/course-test.component";
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {AnnouncementsComponent} from './pages/announcements/announcements.component';
+import {SubjectComponent} from './pages/subject/subject.component';
+import {TeachersComponent} from './pages/teachers/teachers.component';
 
 const routes: Routes = [
   {
-    path: 'test',
-    component: CourseTestComponent
-  }
+    path: 'announcements',
+    component: AnnouncementsComponent
+  },
+  {
+    path: 'teachers',
+    component: TeachersComponent
+  },
+  {
+    path: ':subject',
+    component: SubjectComponent
+  },
 ];
 
 @NgModule({

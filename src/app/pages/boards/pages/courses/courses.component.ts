@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-courses',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  public subjects = [];
+  public course: number;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.course = parseInt(this.route.snapshot.paramMap.get('course'), 10);
+
+    const url = `${environment.apiEndpoint}/courses/${this.course}/subjects`;
+    const request = await this.httpClient.get<any>(url).toPromise();
+
+    this.subjects = request.message;
   }
-
 }

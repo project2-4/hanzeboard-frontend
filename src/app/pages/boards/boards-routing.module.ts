@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {BoardComponent} from "./board/board.component";
-import {DashboardOverviewComponent} from "./pages/dashboard-overview/dashboard-overview.component";
+import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {GradesComponent} from "./pages/grades/grades.component";
 import {StaffComponent} from "./pages/staff/staff.component";
 import {IsStaffGuard} from '../../shared/guards/is-staff.guard';
+import {ErrorPageComponent} from '../../shared/components/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -15,10 +16,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardOverviewComponent
+        component: DashboardComponent,
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'courses',
+        path: 'courses/:course',
         component: CoursesComponent,
         loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule)
       },
@@ -33,7 +35,11 @@ const routes: Routes = [
         component: StaffComponent,
         loadChildren: () => import('./pages/staff/staff.module').then(m => m.StaffModule)
       }
-    ]
+    ],
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent,
   }
 ];
 
