@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {map} from "rxjs/operators";
 import {environment} from '../../../../../../../environments/environment';
 import { faTrashAlt, faEdit, faTasks } from '@fortawesome/free-solid-svg-icons';
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
