@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from "../../../../../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-import-grades',
@@ -6,12 +10,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./import-grades.component.scss']
 })
 export class ImportGradesComponent implements OnInit {
+
+  public courses: Array<any> = [];
+  public subjects: Array<any> = [];
+  public assignments: Array<any> = [];
+
+  public course: any = 0;
+  public subject: any = 0;
+  public assignment: any = 0;
+
   // in app.component.ts
   files: File[] = [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.courses = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).pipe(
+      map(response => {
+        return response.message;
+      })).toPromise();
+  }
+
+  async updateSubjects() {
+    this.subjects = [];
+    this.assignments = [];
+
+    this.subject = 0;
+    this.assignment = 0;
+
+    this.subjects = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects`).pipe(
+      map(response => {
+        return response.message;
+      })).toPromise();
+  }
+
+  async updateAssignments() {
+    this.assignment = 0;
+    this.assignments = [];
+
+    this.assignments = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/assignments`).pipe(
+      map(response => {
+        return response.message;
+      })).toPromise();
   }
 
 
@@ -25,4 +65,20 @@ export class ImportGradesComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
+  async submit() {
+    const formData = new FormData();
+    formData.append('assignment', this.assignment)
+    formData.append('grades', this.files[0]);
+
+    try {
+      await this.httpClient.post<any>(`${environment.apiEndpoint}/grades`, formData).toPromise();
+      alert('Cijfers zijn geimporteerd!');
+
+      await this.router.navigate(['/staff']);
+    } catch (e) {
+      if(e.error.message) {
+        alert(e.error.message);
+      }
+    }
+  }
 }

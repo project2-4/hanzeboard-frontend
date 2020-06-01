@@ -1,6 +1,6 @@
 <div class="row mb-4">
   <div class="col">
-    <input type="text" class="form-control" placeholder="Course naam">
+    <input type="text" class="form-control" placeholder="Course naam" [(ngModel)]="name">
   </div>
 </div>
 
@@ -8,27 +8,27 @@
 <div class="row mb-4">
   <div class="col">
     <label>Docenten</label>
-    <app-drag-drop-search></app-drag-drop-search>
+    <app-drag-drop-search *ngIf="staff" [listTwo]="staff" [key]="'id'" [value]="'abbreviation'" (listOne)="staffUpdate($event)"></app-drag-drop-search>
   </div>
 </div>
 
 <div class="row mb-4">
   <div class="col">
     <label>Klassen</label>
-    <app-drag-drop-search></app-drag-drop-search>
+    <app-drag-drop-search *ngIf="groups" [listTwo]="groups" [key]="'id'" [value]="'name'" (listOne)="groupsUpdate($event)"></app-drag-drop-search>
   </div>
 </div>
 
 <div class="row mb-4">
   <div class="col">
     <label>Indivuele studenten</label>
-    <app-drag-drop-search></app-drag-drop-search>
+    <app-drag-drop-search *ngIf="students" [listTwo]="students" [key]="'id'" [value]="'student_number'" (listOne)="studentsUpdate($event)"></app-drag-drop-search>
   </div>
 </div>
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary">Opslaan</button>
+    <button class="btn btn-block btn-primary" (click)="submit()">Toevoegen</button>
   </div>
 </div>
 

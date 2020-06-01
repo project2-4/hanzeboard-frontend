@@ -13,7 +13,7 @@
         <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/edit/' + row.id">
           <fa-icon [icon]="faEdit"></fa-icon>
         </button>
-        <button class="btn btn-danger" title="Verwijder course">
+        <button class="btn btn-danger" title="Verwijder course" (click)="deleteSubject(row.id)">
           <fa-icon [icon]="faTrashAlt"></fa-icon>
         </button>
       </div>

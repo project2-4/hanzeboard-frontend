@@ -6,7 +6,7 @@
       [cdkDropListData]="listOne"
       [cdkDropListConnectedTo]="[doneList]"
       class="list"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="dropListOne($event)">
 
       <mat-form-field>
         <mat-label>Zoeken</mat-label>
@@ -16,7 +16,7 @@
       <p *ngIf="(this.listOne$ | async)?.length === 0 && !listOneSearching" class="text-center">Voeg toe door te slepen</p>
       <p *ngIf="(this.listOne$ | async)?.length === 0 && listOneSearching" class="text-center">Geen zoekresultaat</p>
 
-      <div class="item" *ngFor="let item of (this.listOne$ | async)" cdkDrag>{{item}}</div>
+      <div class="item" *ngFor="let item of (this.listOne$ | async)" cdkDrag>{{item[value]}}</div>
     </div>
   </div>
   <div class="col-6">
@@ -26,7 +26,7 @@
       [cdkDropListData]="listTwo"
       [cdkDropListConnectedTo]="[todoList]"
       class="list"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="dropListTwo($event)">
 
       <mat-form-field>
         <mat-label>Zoeken</mat-label>
@@ -35,7 +35,7 @@
       <p *ngIf="(this.listTwo$ | async)?.length === 0 && !listTwoSearching" class="text-center">Voeg toe door te slepen</p>
       <p *ngIf="(this.listTwo$ | async)?.length === 0 && listTwoSearching" class="text-center">Geen zoekresultaat</p>
 
-      <div class="item" *ngFor="let item of (this.listTwo$ | async)" cdkDrag>{{item}}</div>
+      <div class="item" *ngFor="let item of (this.listTwo$ | async)" cdkDrag>{{item[value]}}</div>
     </div>
   </div>
 </div>

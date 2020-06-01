@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Observable, Subject} from "rxjs";
-import {map, startWith, tap} from "rxjs/operators";
+import {map, startWith, switchMap, tap} from "rxjs/operators";
 import Fuse from "fuse.js";
 import FuseResult = Fuse.FuseResult;
 
@@ -16,7 +16,13 @@ export class DragDropSearchComponent implements OnInit {
   listOne = [];
 
   @Input('listTwo')
-  listTwo = ['a', 'b', 'c'];
+  listTwo = [];
+
+  @Input('key')
+  public key;
+
+  @Input('value')
+  public value;
 
   public searchOne$: Subject<string> = new Subject<string>();
   public searchTwo$: Subject<string> = new Subject<string>();
@@ -26,6 +32,12 @@ export class DragDropSearchComponent implements OnInit {
 
   public listTwo$: Observable<Array<string>>;
   public listTwoSearching: boolean = false;
+
+  @Output('listOne')
+  public outputListOne = new EventEmitter();
+
+  @Output('listTwo')
+  public outputListTwo = new EventEmitter();
 
   ngOnInit() {
     this.listOne$ = this.searchOne$.pipe(
@@ -37,7 +49,9 @@ export class DragDropSearchComponent implements OnInit {
         }
 
         this.listOneSearching = true;
-        const fuse = new Fuse(this.listOne);
+        const fuse = new Fuse(this.listOne, {
+          keys: [this.value]
+        });
         return fuse.search(searchText as string).map(result => result.item)
       })
     );
@@ -51,13 +65,15 @@ export class DragDropSearchComponent implements OnInit {
         }
 
         this.listTwoSearching = true;
-        const fuse = new Fuse(this.listTwo);
+        const fuse = new Fuse(this.listTwo,{
+          keys: [this.value]
+        });
         return fuse.search(searchText as string).map(result => result.item)
       })
     );
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  dropListOne(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -66,6 +82,22 @@ export class DragDropSearchComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+
+
+    this.outputListOne.emit(event.container.data);
+  }
+
+  dropListTwo(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+
+    this.outputListTwo.emit(event.container.data);
   }
 
 }

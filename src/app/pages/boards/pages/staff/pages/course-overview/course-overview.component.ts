@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {map} from "rxjs/operators";
 import {environment} from '../../../../../../../environments/environment';
 import { faTrashAlt, faEdit, faTasks } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-course-overview',
@@ -23,6 +24,15 @@ export class CourseOverviewComponent implements OnInit {
   async ngOnInit() {
     const request = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).toPromise();
     this.courses = request.message;
+  }
+
+  public async deleteCourse(id) {
+    if(confirm('Weet u het zeker?')) {
+      await this.httpClient.delete(`${environment.apiEndpoint}/courses/${id}`).toPromise();
+      this.courses = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).pipe(
+        map(response => response.message)
+      ).toPromise();
+    }
   }
 
 }
