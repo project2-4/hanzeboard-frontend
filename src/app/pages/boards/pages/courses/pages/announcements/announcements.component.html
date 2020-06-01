@@ -1,1 +1,17 @@
-<h1>Announcements</h1>
+<div class="accordion" id="announcementsAccordion">
+  <div class="card" *ngFor="let announcement of announcements">
+    <div class="card-header" id="heading_{{announcement['id']}}">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_{{announcement['id']}}"
+                aria-expanded="true" aria-controls="collapse_{{announcement['id']}}">
+          {{announcement['title']}}
+        </button>
+      </h2>
+    </div>
+    <div id="collapse_{{announcement['id']}}" class="collapse" aria-labelledby="heading_{{announcement['id']}}" data-parent="#announcementsAccordion">
+      <div class="card-body">
+        {{announcement['content']}}
+      </div>
+    </div>
+  </div>
+</div>
