@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../../../../environments/environment";
-import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../../../../environments/environment';
+import {ActivatedRoute} from '@angular/router';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-manage-subjects',
@@ -15,6 +16,9 @@ export class ManageSubjectsComponent implements OnInit {
   public columnsToDisplay = ['name', 'actions'];
 
   public courseId: string;
+
+  faTrashAlt = faTrashAlt;
+  faEdit = faEdit;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
