@@ -18,10 +18,7 @@
       </li>
     </ul>
 
-    <form [formGroup] = "form" class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <button class="btn btn-secondary" (click)="addToHomeScreen()" *ngIf="showA2HSButton">Installeer PWA</button>
 
     <div class="logout-button">
       <button class="btn btn-secondary" (click)="logout()">Logout</button>
