@@ -20,6 +20,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatButtonModule} from '@angular/material/button';
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    FontAwesomeModule
   ],
   providers: [
     {
