@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {HttpInterceptor, HttpRequest, HttpHandler} from "@angular/common/http";
-import {AuthenticationService} from "../services/authentication.service";
+import {Injectable} from '@angular/core';
+import {HttpInterceptor, HttpRequest, HttpHandler} from '@angular/common/http';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthTokenInjectInterceptor implements HttpInterceptor {
    * @param next
    */
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if(this.authService.isLoggedIn) {
+    if (this.authService.isLoggedIn) {
       // Request is readonly so it needs to be cloned
       req = req.clone({
         setHeaders: {Authorization: `Bearer ${this.authService.accessToken}`}

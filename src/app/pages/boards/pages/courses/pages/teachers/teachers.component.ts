@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../../../../../../environments/environment';
 
 @Component({
   selector: 'app-teachers',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeachersComponent implements OnInit {
 
-  constructor() { }
+  public course: number;
+  public staff = [];
+  public columnsToDisplay = ['full_name', 'office_location', 'status'];
 
-  ngOnInit(): void {
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
+
+  async ngOnInit() {
+    this.course = parseInt(this.route.parent.snapshot.paramMap.get('course'), 10);
+
+    this.staff = await this.loadStaff();
+  }
+
+  async loadStaff() {
+    const request = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/staff/`).toPromise();
+
+    return request.message;
   }
 
 }
