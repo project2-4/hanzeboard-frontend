@@ -3,7 +3,7 @@
     <label>Vak</label>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control mb-2" placeholder="Vak">
+        <input type="text" class="form-control mb-2" placeholder="Vak" [(ngModel)]="name">
       </div>
     </div>
   </div>
@@ -11,6 +11,6 @@
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary">Toevoegen</button>
+    <button class="btn btn-block btn-primary" (click)="submit()">Toevoegen</button>
   </div>
 </div>

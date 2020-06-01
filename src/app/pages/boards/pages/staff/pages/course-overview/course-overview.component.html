@@ -16,7 +16,7 @@
         <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/courses/' + row.id + '/edit'">
           <i class="fas fa-edit"></i>
         </button>
-        <button class="btn btn-danger" title="Verwijder course">
+        <button class="btn btn-danger" title="Verwijder course" (click)="deleteCourse(row.id)">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>
