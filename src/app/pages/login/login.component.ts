@@ -31,10 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   async login(value) {
-    const loginSucceeded = await this.authService.login(value.email, value.password);
-    if (loginSucceeded) {
+    if (await this.authService.login(value.email, value.password)) {
       await this.router.navigate(['']);
-      return;
     } else {
       this.loginError = true;
     }
