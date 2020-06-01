@@ -22,6 +22,11 @@ export class AnnouncementsComponent implements OnInit {
 
   async loadAnnouncements() {
     const request = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/announcements/`).toPromise();
+
+    request.message.forEach((element) => {
+      element.active = false;
+    });
+
     return request.message;
   }
 

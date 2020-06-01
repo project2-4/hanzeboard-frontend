@@ -1,16 +1,20 @@
-<div class="accordion" id="announcementsAccordion">
+<div class="accordion">
   <div class="card" *ngFor="let announcement of announcements">
-    <div class="card-header" id="heading_{{announcement['id']}}">
-      <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_{{announcement['id']}}"
-                aria-expanded="true" aria-controls="collapse_{{announcement['id']}}">
-          {{announcement['title']}}
+    <div class="card-header">
+      <p class="mb-0">
+        <button type="button" class="btn btn-link btn-block text-left" (click)="announcement.active = !announcement.active"
+                [attr.aria-expanded]="!announcement.active" aria-controls="collapseExample">
+          {{announcement['title']}} <span class="badge badge-secondary float-right">{{announcement['poster']['abbreviation']}}</span>
         </button>
-      </h2>
+      </p>
     </div>
-    <div id="collapse_{{announcement['id']}}" class="collapse" aria-labelledby="heading_{{announcement['id']}}" data-parent="#announcementsAccordion">
+    <div class="collapse" [ngbCollapse]="!announcement.active">
       <div class="card-body">
-        {{announcement['content']}}
+        <p class="content-announcement">{{announcement['content']}}</p>
+
+        <blockquote class="blockquote mb-0 mt-3">
+          <footer class="blockquote-footer"><small>{{announcement['poster']['user']['full_name']}}</small></footer>
+        </blockquote>
       </div>
     </div>
   </div>

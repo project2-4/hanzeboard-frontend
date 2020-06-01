@@ -41,13 +41,14 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     NgbModule,
     DragDropModule
   ],
-    exports: [
-        HeaderComponent,
-        FooterComponent,
-        ErrorPageComponent,
-        HasRoleDirective,
-        IsStaffDirective,
-        DragDropSearchComponent,
-    ]
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    ErrorPageComponent,
+    HasRoleDirective,
+    IsStaffDirective,
+    DragDropSearchComponent,
+    MatHeaderRowDefDirective,
+  ]
 })
 export class SharedModule { }
