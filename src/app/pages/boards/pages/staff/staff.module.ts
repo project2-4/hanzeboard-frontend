@@ -17,6 +17,7 @@ import { AddSubjectComponent } from './pages/add-subject/add-subject.component';
 import { EditSubjectComponent } from './pages/edit-subject/edit-subject.component';
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { ReportAbsentComponent } from './pages/report-absent/report-absent.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ReportAbsentComponent } from './pages/report-absent/report-absent.compo
     SharedModule,
     NgxDropzoneModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
 })
 export class StaffModule { }

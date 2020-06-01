@@ -11,13 +11,13 @@
     <td mat-cell *matCellDef="let row">
       <div class="d-flex justify-content-end">
         <button class="btn btn-info mr-1" title="Vakken beheren" [routerLink]="'/staff/manage-subjects/' + row.id">
-          <i class="fas fa-tasks"></i>
+          <fa-icon [icon]="faTasks"></fa-icon>
         </button>
         <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/courses/' + row.id + '/edit'">
-          <i class="fas fa-edit"></i>
+          <fa-icon [icon]="faEdit"></fa-icon>
         </button>
         <button class="btn btn-danger" title="Verwijder course" (click)="deleteCourse(row.id)">
-          <i class="fas fa-trash-alt"></i>
+         <fa-icon [icon]="faTrashAlt"></fa-icon>
         </button>
       </div>
     </td>

@@ -14,8 +14,13 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SharedModule} from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {AuthTokenGrabberInterceptor} from "./shared/interceptors/authTokenGrabber.interceptor";
-import {AuthTokenInjectInterceptor} from "./shared/interceptors/authTokenInject.interceptor";
+import {AuthTokenGrabberInterceptor} from './shared/interceptors/authTokenGrabber.interceptor';
+import {AuthTokenInjectInterceptor} from './shared/interceptors/authTokenInject.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import {AuthTokenInjectInterceptor} from "./shared/interceptors/authTokenInject.
     MatSortModule,
     MatProgressSpinnerModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    MatCardModule,
+    MatButtonModule,
+    FontAwesomeModule
   ],
   providers: [
     {
