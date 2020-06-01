@@ -42,6 +42,6 @@
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary" [disabled]="this.assignment === 0 || files.length != 1">Importeren</button>
+    <button class="btn btn-block btn-primary" [disabled]="this.assignment === 0 || files.length != 1" (click)="submit()">Importeren</button>
   </div>
 </div>

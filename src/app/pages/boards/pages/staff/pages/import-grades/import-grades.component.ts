@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {environment} from "../../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-import-grades',
@@ -21,7 +22,7 @@ export class ImportGradesComponent implements OnInit {
   // in app.component.ts
   files: File[] = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   async ngOnInit() {
     this.courses = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).pipe(
@@ -64,4 +65,20 @@ export class ImportGradesComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
+  async submit() {
+    const formData = new FormData();
+    formData.append('assignment', this.assignment)
+    formData.append('grades', this.files[0]);
+
+    try {
+      await this.httpClient.post<any>(`${environment.apiEndpoint}/grades`, formData).toPromise();
+      alert('Cijfers zijn geimporteerd!');
+
+      await this.router.navigate(['/staff']);
+    } catch (e) {
+      if(e.error.message) {
+        alert(e.error.message);
+      }
+    }
+  }
 }
