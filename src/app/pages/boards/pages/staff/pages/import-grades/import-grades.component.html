@@ -1,8 +1,9 @@
 <div class="row mb-4">
   <div class="col">
     <label for="select-course">Selecteer course</label>
-    <select id="select-course" class="form-control">
-      <option value="" selected disabled>Selecteer course</option>
+    <select id="select-course" class="form-control" [disabled]="courses.length === 0" [(ngModel)]="course" (change)="updateSubjects()">
+      <option value="0" selected disabled>Selecteer course</option>
+      <option *ngFor="let course of courses" value="{{ course.id }}">{{ course.name }}</option>
     </select>
   </div>
 </div>
@@ -10,8 +11,9 @@
 <div class="row mb-4">
   <div class="col">
     <label for="select-subject">Selecteer vak</label>
-    <select id="select-subject" class="form-control">
-      <option value="" selected disabled>Selecteer vak</option>
+    <select id="select-subject" class="form-control" [disabled]="subjects.length === 0" [(ngModel)]="subject" (change)="updateAssignments()">
+      <option value="0" selected disabled>Selecteer vak</option>
+      <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.name }}</option>
     </select>
   </div>
 </div>
@@ -19,8 +21,9 @@
 <div class="row mb-4">
   <div class="col">
     <label for="select-assignment">Selecteer opdracht</label>
-    <select id="select-assignment" class="form-control">
-      <option value="" selected disabled>Selecteer opdracht</option>
+    <select id="select-assignment" class="form-control" [disabled]="assignments.length === 0" [(ngModel)]="assignment">
+      <option value="0" selected disabled>Selecteer opdracht</option>
+      <option *ngFor="let assignment of assignments" value="{{ assignment.id }}">{{ assignment.name }}</option>
     </select>
   </div>
 </div>
@@ -39,6 +42,6 @@
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary">Importeren</button>
+    <button class="btn btn-block btn-primary" [disabled]="this.assignment === 0 || files.length != 1">Importeren</button>
   </div>
 </div>
