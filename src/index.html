@@ -19,13 +19,15 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
 </head>
 <body>
-  <noscript>
-    Oeps, deze applicatie werkt alleen wanneer Javascript is ingeschakelt.
-  </noscript>
   <app-root>
     <div class="loader">Loading...</div>
   </app-root>
 
+  <noscript>
+    Oeps, deze applicatie werkt alleen wanneer Javascript is ingeschakelt.
+  </noscript>
+
+  <!-- Lazy load bootstrap -->
   <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></noscript>
 </body>
