@@ -13,6 +13,7 @@ import {SharedModule} from '../../../../shared/shared.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [CoursesComponent, SubjectComponent, AnnouncementsComponent, TeachersComponent],
@@ -25,7 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
     SharedModule,
     MatExpansionModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class CoursesModule { }
