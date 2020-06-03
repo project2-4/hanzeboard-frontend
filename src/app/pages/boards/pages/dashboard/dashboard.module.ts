@@ -9,6 +9,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { AbsenteesComponent } from './pages/absentees/absentees.component';
 import { LatestGradesComponent } from './pages/latest-grades/latest-grades.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {SharedModule} from '../../../../shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { LatestGradesComponent } from './pages/latest-grades/latest-grades.compo
     DashboardRoutingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSidenavModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

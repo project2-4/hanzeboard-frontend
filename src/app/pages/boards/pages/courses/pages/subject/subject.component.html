@@ -1,1 +1,13 @@
-<h1>{{ data['name'] }}</h1>
+<h1>{{ page['name'] }}</h1>
+<small>
+  {{ page['content'] }}
+</small>
+
+<div class="mt-5">
+  <mat-card *ngFor="let item of page['items']">
+    <h6>{{ item.title }}</h6>
+      <mat-card-content [ngSwitch]="item.type">
+        <p *ngSwitchCase="'text'">{{ item.content }}</p>
+      </mat-card-content>
+  </mat-card>
+</div>

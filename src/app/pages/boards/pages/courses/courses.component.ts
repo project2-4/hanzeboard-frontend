@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-courses',
