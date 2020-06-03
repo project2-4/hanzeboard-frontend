@@ -10,6 +10,9 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import {SharedModule} from '../../../../shared/shared.module';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [CoursesComponent, SubjectComponent, AnnouncementsComponent, TeachersComponent],
@@ -19,7 +22,10 @@ import {SharedModule} from '../../../../shared/shared.module';
     RouterModule,
     NgbCollapseModule,
     MatTableModule,
-    SharedModule
+    SharedModule,
+    MatExpansionModule,
+    MatSidenavModule,
+    MatButtonModule
   ]
 })
 export class CoursesModule { }

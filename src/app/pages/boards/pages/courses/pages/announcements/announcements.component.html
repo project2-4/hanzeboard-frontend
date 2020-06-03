@@ -1,21 +1,17 @@
-<div class="accordion">
-  <div class="card" *ngFor="let announcement of announcements">
-    <div class="card-header">
-      <p class="mb-0">
-        <button type="button" class="btn btn-link btn-block text-left" (click)="announcement.active = !announcement.active"
-                [attr.aria-expanded]="!announcement.active" aria-controls="collapseExample">
-          {{announcement['title']}} <span class="badge badge-secondary float-right">{{announcement['poster']['abbreviation']}}</span>
-        </button>
-      </p>
-    </div>
-    <div class="collapse" [ngbCollapse]="!announcement.active">
-      <div class="card-body">
-        <p class="content-announcement">{{announcement['content']}}</p>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let announcement of announcements">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{announcement['title']}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <span class="badge badge-secondary float-right">{{announcement['poster']['abbreviation']}}</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p class="content-announcement">{{announcement['content']}}</p>
 
-        <blockquote class="blockquote mb-0 mt-3">
-          <footer class="blockquote-footer"><small>{{announcement['poster']['user']['full_name']}}</small></footer>
-        </blockquote>
-      </div>
-    </div>
-  </div>
-</div>
+    <blockquote class="blockquote mb-0 mt-3">
+      <footer class="blockquote-footer"><small>{{announcement['poster']['user']['full_name']}}</small></footer>
+    </blockquote>
+  </mat-expansion-panel>
+</mat-accordion>

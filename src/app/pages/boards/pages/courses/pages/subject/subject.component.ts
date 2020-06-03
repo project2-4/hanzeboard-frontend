@@ -12,6 +12,7 @@ export class SubjectComponent implements OnInit {
   public course: number;
   public subject: number;
   public data = [];
+  public page = [];
 
   constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -31,6 +32,8 @@ export class SubjectComponent implements OnInit {
 
     this.httpClient.get<any>(url).toPromise().then((res) => {
       this.data = res.message;
+      this.page = res.message.page;
+      console.log(this.page);
     });
   }
 }

@@ -1,7 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fafafa !important;
+}
+
+.sidenav {
+  max-width: 285px;
+
+  .nav-link {
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.sidenav-content {
+  min-height: calc(100vh - 75px - 24px);
+}
+
+@media only screen and (max-width: 922px) {
+  .sidenav-content {
+    min-height: calc(100vh - 75px);
+  }
+}
 
 .full-width-table {
   width: 100%;

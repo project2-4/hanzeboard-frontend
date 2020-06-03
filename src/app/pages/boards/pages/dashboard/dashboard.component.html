@@ -1,26 +1,18 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <div class="card">
-        <div class="card-header">
-          Menu
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a class="nav-link active" routerLink="/dashboard" >Courses</a>
-          </li>
-          <li class="list-group-item">
-            <a class="nav-link" routerLink="/absentees">Ziekmeldingen</a>
-          </li>
-          <li class="list-group-item">
-            <a class="nav-link" routerLink="/latest-grades">Cijfers</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col">
-      <router-outlet></router-outlet>
-    </div>
+<app-sidenav>
+  <div class="links">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a class="nav-link active" routerLink="/dashboard" >Courses</a>
+      </li>
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/absentees">Ziekmeldingen</a>
+      </li>
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/latest-grades">Cijfers</a>
+      </li>
+    </ul>
   </div>
-</div>
+
+  <router-outlet></router-outlet>
+</app-sidenav>
 

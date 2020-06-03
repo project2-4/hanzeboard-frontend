@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
+import {SidenavComponent} from './components/sidenav/sidenav.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HasRoleDirective } from './directives/has-role.directive';
@@ -16,6 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IsStaffDirective } from './directives/is-staff.directive';
 import { DragDropSearchComponent } from './components/drag-drop-search/drag-drop-search.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -23,6 +25,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
   declarations: [
     HeaderComponent,
     FooterComponent,
+    SidenavComponent,
     ErrorPageComponent,
     HasRoleDirective,
     MatHeaderRowDefDirective,
@@ -39,7 +42,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatInputModule,
     NgbModule,
-    DragDropModule
+    DragDropModule,
+    MatSidenavModule
   ],
   exports: [
     HeaderComponent,
@@ -49,6 +53,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     IsStaffDirective,
     DragDropSearchComponent,
     MatHeaderRowDefDirective,
+    SidenavComponent,
   ]
 })
 export class SharedModule { }
