@@ -8,6 +8,8 @@ import {AddSubjectComponent} from "./pages/add-subject/add-subject.component";
 import {EditSubjectComponent} from "./pages/edit-subject/edit-subject.component";
 import {EditCourseComponent} from "./pages/edit-course/edit-course.component";
 import {ReportAbsentComponent} from "./pages/report-absent/report-absent.component";
+import {UserManagementComponent} from "./pages/user-management/user-management.component";
+import {AddUserComponent} from "./pages/add-user/add-user.component";
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'report-absent',
     component: ReportAbsentComponent,
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent,
+  },
+  {
+    path: 'user-management/:type/add',
+    component: AddUserComponent
   },
   {
     path: '',
