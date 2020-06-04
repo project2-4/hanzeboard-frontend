@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-course',
@@ -23,11 +23,13 @@ export class EditCourseComponent implements OnInit {
   public studentsOutput: Array<any> = [];
   public subjects: Array<string> = [];
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
+  private courseId;
+
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   async ngOnInit() {
-    const courseId = this.route.snapshot.paramMap.get('courseId');
-    const course = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${courseId}`).pipe(
+    this.courseId = this.route.snapshot.paramMap.get('courseId');
+    const course = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.courseId}`).pipe(
       map(response => {
         return response.message;
       })
@@ -74,8 +76,23 @@ export class EditCourseComponent implements OnInit {
     this.amountOfSubjects++;
   }
 
-  public submit() {
-    console.log(this.name, this.staffOutput, this.groupsOutput, this.studentsOutput, this.subjects);
+  public async submit() {
+    try {
+      await this.httpClient.put<any>(`${environment.apiEndpoint}/courses/${this.courseId}`, {
+        name: this.name,
+        staff_ids: [],
+        group_ids: [],
+        student_ids: [],
+        subjects: [],
+        is_public: 1
+      }).toPromise();
+
+      await this.router.navigate(['/staff/courses/overview']);
+    } catch (e) {
+      if (e.error.message) {
+        alert(e.error.message);
+      }
+    }
   }
 
 }
