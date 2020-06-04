@@ -11,6 +11,9 @@
       </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-end">
+          <button class="btn btn-warning mr-1" title="Annoucement toevoegen" [routerLink]="'/staff/announcements/' + row.id">
+            <fa-icon [icon]="faBullhorn"></fa-icon>
+          </button>
           <button class="btn btn-info mr-1" title="Vakken beheren" [routerLink]="'/staff/manage-subjects/' + row.id">
             <fa-icon [icon]="faTasks"></fa-icon>
           </button>

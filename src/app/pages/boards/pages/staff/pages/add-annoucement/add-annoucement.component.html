@@ -1,0 +1,31 @@
+<div class="alert alert-danger" role="alert">
+  <strong>Let op:</strong> een annoucement kan na verzending niet meer terug worden gehaald!
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Titel</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="title">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Inhoud</label>
+    <div class="row">
+      <div class="col">
+        <textarea class="form-control mb-2" [(ngModel)]="content"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <button class="btn btn-block btn-primary" [disabled]="title.length === 0 || content.length === 0" (click)="submit()">Verzenden</button>
+  </div>
+</div>

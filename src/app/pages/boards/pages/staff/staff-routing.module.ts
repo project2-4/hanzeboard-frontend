@@ -11,6 +11,7 @@ import {ReportAbsentComponent} from "./pages/report-absent/report-absent.compone
 import {UserManagementComponent} from "./pages/user-management/user-management.component";
 import {AddUserComponent} from "./pages/add-user/add-user.component";
 import {EditUserComponent} from "./pages/edit-user/edit-user.component";
+import {AddAnnoucementComponent} from "./pages/add-annoucement/add-annoucement.component";
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'user-management/:type/edit/:userId',
     component: EditUserComponent
+  },
+  {
+    path: 'announcements/:courseId',
+    component: AddAnnoucementComponent
   },
   {
     path: '',

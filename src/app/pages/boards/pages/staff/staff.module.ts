@@ -21,10 +21,11 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { AddAnnoucementComponent } from './pages/add-annoucement/add-annoucement.component';
 
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent, AddAnnoucementComponent],
   imports: [
     CommonModule,
     RouterModule,
