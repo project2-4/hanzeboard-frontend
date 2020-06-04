@@ -35,4 +35,21 @@ export class UserManagementComponent implements OnInit {
     ).toPromise();
   }
 
+  async deleteStaff(id) {
+    if(confirm('Weet u het zeker?')) {
+      await this.httpClient.delete(`${environment.apiEndpoint}/staff/${id}`).toPromise();
+      this.staffs = await this.httpClient.get<any>(`${environment.apiEndpoint}/staff`).pipe(
+        map(response => response.message)
+      ).toPromise();
+    }
+  }
+
+  async deleteStudent(id) {
+    if(confirm('Weet u het zeker?')) {
+      await this.httpClient.delete(`${environment.apiEndpoint}/students/${id}`).toPromise();
+      this.students = await this.httpClient.get<any>(`${environment.apiEndpoint}/students`).pipe(
+        map(response => response.message)
+      ).toPromise();
+    }
+  }
 }

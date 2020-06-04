@@ -10,6 +10,7 @@ import {EditCourseComponent} from "./pages/edit-course/edit-course.component";
 import {ReportAbsentComponent} from "./pages/report-absent/report-absent.component";
 import {UserManagementComponent} from "./pages/user-management/user-management.component";
 import {AddUserComponent} from "./pages/add-user/add-user.component";
+import {EditUserComponent} from "./pages/edit-user/edit-user.component";
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'user-management/:type/add',
     component: AddUserComponent
+  },
+  {
+    path: 'user-management/:type/edit/:userId',
+    component: EditUserComponent
   },
   {
     path: '',
