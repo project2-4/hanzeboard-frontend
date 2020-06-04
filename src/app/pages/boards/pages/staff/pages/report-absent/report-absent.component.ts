@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-report-absent',
@@ -11,9 +12,11 @@ import {HttpClient} from "@angular/common/http";
 export class ReportAbsentComponent implements OnInit {
 
   public staff: Array<any> = [];
-  public untillDate;
+  public untillDate: any = '';
+  public selectedStaff = '';
+  public selectedReason = '';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   async ngOnInit() {
     this.staff = await this.httpClient.get<any>(`${environment.apiEndpoint}/staff`).pipe(
@@ -22,6 +25,32 @@ export class ReportAbsentComponent implements OnInit {
       })
     ).toPromise();
 
+  }
+
+  public async submit() {
+    try {
+      let month = this.untillDate.month;
+      let day = this.untillDate.day;
+
+      if(month < 10) {
+        month = '0' + month;
+      }
+
+      if(day < 10) {
+        day = '0' + day;
+      }
+
+      await this.httpClient.put(`${environment.apiEndpoint}/staff/${this.selectedStaff}/status`, {
+        status: this.selectedReason,
+        until: `${this.untillDate.year}-${month}-${day}`
+      }).toPromise()
+
+      alert('toegevoegd');
+      await this.router.navigate(['/staff']);
+
+    } catch (e) {
+      alert('er ging iets mis')
+    }
   }
 
 }

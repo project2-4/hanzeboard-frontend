@@ -1,28 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <div class="card">
-        <div class="card-header">
-          Menu
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a class="nav-link" routerLink="/staff/courses/overview">Courses</a>
-          </li>
-          <li class="list-group-item">
-            <a class="nav-link" routerLink="/staff/report-absent">Absent melden</a>
-          </li>
-          <li class="list-group-item">
-            <a class="nav-link" routerLink="/staff/import-grades">Cijfers invoeren</a>
-          </li>
-          <li class="list-group-item">
-            <a class="nav-link" routerLink="/staff/import-grades">Gebruikersbeheer</a>
-          </li>
-        </ul>
-    </div>
-    </div>
-    <div class="col">
-      <router-outlet></router-outlet>
-    </div>
+<app-sidenav>
+  <div class="links">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/staff/courses/overview">Courses</a>
+      </li>
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/staff/report-absent">Absent melden</a>
+      </li>
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/staff/import-grades">Cijfers invoeren</a>
+      </li>
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/staff/import-grades">Gebruikersbeheer</a>
+      </li>
+    </ul>
   </div>
-</div>
+
+  <router-outlet></router-outlet>
+</app-sidenav>

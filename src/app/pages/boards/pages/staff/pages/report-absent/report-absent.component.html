@@ -1,7 +1,7 @@
 <div class="row mb-4">
   <div class="col">
     <label for="select-teacher">Docent</label>
-    <select id="select-teacher" class="form-control">
+    <select id="select-teacher" class="form-control" [(ngModel)]="selectedStaff">
       <option value="" selected disabled>Selecteer docent</option>
       <option *ngFor="let teacher of staff" [value]="teacher.id">{{ teacher.abbreviation }}</option>
     </select>
@@ -18,14 +18,19 @@
 
 <div class="row mb-4">
   <div class="col">
-    <label for="reason">Eventuele reden</label>
-    <textarea class="form-control" id="reason"></textarea>
+    <label for="reason">Reden</label>
+    <select id="reason" class="form-control" [(ngModel)]="selectedReason">
+      <option value="" selected disabled>Selecteer reden</option>
+      <option value="available">Aanwezig</option>
+      <option value="leave">Vrij</option>
+      <option value="sick">Ziek</option>
+    </select>
   </div>
 </div>
 
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary">Absent melden</button>
+    <button class="btn btn-block btn-primary" [disabled]="selectedReason.length === 0 || selectedStaff.length === 0 || untillDate.length === 0" (click)="submit()">Absent melden</button>
   </div>
 </div>
