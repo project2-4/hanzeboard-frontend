@@ -18,10 +18,14 @@ import { EditSubjectComponent } from './pages/edit-subject/edit-subject.componen
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { ReportAbsentComponent } from './pages/report-absent/report-absent.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { AddAnnoucementComponent } from './pages/add-annoucement/add-annoucement.component';
 
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent, AddAnnoucementComponent],
   imports: [
     CommonModule,
     RouterModule,

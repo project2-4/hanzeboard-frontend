@@ -1,0 +1,109 @@
+<div class="row mb-4">
+  <div class="col">
+    <label>Voornaam</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control mb-2" placeholder="Voornaam" [(ngModel)]="firstName">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Tussenvoegsel</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control mb-2" placeholder="Tussenvoegsel" [(ngModel)]="infix">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Achternaam</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control mb-2" placeholder="Achternaam" [(ngModel)]="lastName">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Email</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control mb-2" placeholder="Email" [(ngModel)]="email">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Wachtwoord</label>
+    <div class="row">
+      <div class="col">
+        <input type="password" class="form-control mb-2" placeholder="Wachtwoord" [(ngModel)]="password">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Herhaal wachtwoord</label>
+    <div class="row">
+      <div class="col">
+        <input type="password" class="form-control mb-2" placeholder="Wachtwoord" [(ngModel)]="confirmPassword">
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="type === 'staff'">
+  <div class="row mb-4">
+    <div class="col">
+      <label>Afkorting</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control mb-2" placeholder="Afkorting" [(ngModel)]="abbreviation">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <label>Locatie</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control mb-2" placeholder="Locatie" [(ngModel)]="officeLocation">
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type === 'student'">
+  <div class="row mb-4">
+    <div class="col">
+      <label>Studentnummer</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control mb-2" placeholder="Studentnummer" [(ngModel)]="studentNumber">
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div class="row mb-4">
+  <div class="col">
+    <button class="btn btn-block btn-primary" [disabled]="firstName.length === 0 || lastName.length === 0 || email.length === 0 || password.length === 0" (click)="submit()">Toevoegen</button>
+  </div>
+</div>
