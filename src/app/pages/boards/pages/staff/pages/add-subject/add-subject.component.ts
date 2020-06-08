@@ -8,13 +8,10 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './add-subject.component.html',
   styleUrls: ['./add-subject.component.scss']
 })
-export class AddSubjectComponent implements OnInit {
+export class AddSubjectComponent {
   public name: string = '';
 
   constructor(private route: ActivatedRoute, private httpClient: HttpClient, private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   public async submit() {
     const courseId = this.route.snapshot.paramMap.get('courseId');
