@@ -12,6 +12,9 @@ import {UserManagementComponent} from "./pages/user-management/user-management.c
 import {AddUserComponent} from "./pages/add-user/add-user.component";
 import {EditUserComponent} from "./pages/edit-user/edit-user.component";
 import {AddAnnoucementComponent} from "./pages/add-annoucement/add-annoucement.component";
+import {AssignmentsOverviewComponent} from "./pages/assignments-overview/assignments-overview.component";
+import {AddAssignmentsComponent} from "./pages/add-assignments/add-assignments.component";
+import {EditAssignmentsComponent} from "./pages/edit-assignments/edit-assignments.component";
 
 const routes: Routes = [
   {
@@ -37,6 +40,18 @@ const routes: Routes = [
   {
     path: 'manage-subjects/:courseId/subjects/edit/:subjectId',
     component: EditSubjectComponent
+  },
+  {
+    path: 'manage-subjects/:courseId/subjects/:subjectId/assignments-overview',
+    component: AssignmentsOverviewComponent
+  },
+  {
+    path: 'manage-subjects/:courseId/subjects/:subjectId/assignments-overview/add',
+    component: AddAssignmentsComponent
+  },
+  {
+    path: 'manage-subjects/:courseId/subjects/:subjectId/assignments-overview/edit/:assignmentId',
+    component: EditAssignmentsComponent
   },
   {
     path: 'import-grades',

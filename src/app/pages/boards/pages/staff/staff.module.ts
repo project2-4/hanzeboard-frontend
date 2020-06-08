@@ -22,10 +22,13 @@ import { UserManagementComponent } from './pages/user-management/user-management
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { AddAnnoucementComponent } from './pages/add-annoucement/add-annoucement.component';
+import { AssignmentsOverviewComponent } from './pages/assignments-overview/assignments-overview.component';
+import { AddAssignmentsComponent } from './pages/add-assignments/add-assignments.component';
+import { EditAssignmentsComponent } from './pages/edit-assignments/edit-assignments.component';
 
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent, AddAnnoucementComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent, AddAnnoucementComponent, AssignmentsOverviewComponent, AddAssignmentsComponent, EditAssignmentsComponent],
   imports: [
     CommonModule,
     RouterModule,

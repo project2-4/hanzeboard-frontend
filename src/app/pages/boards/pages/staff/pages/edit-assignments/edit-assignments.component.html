@@ -1,0 +1,35 @@
+<div class="row mb-4">
+  <div class="col">
+    <label>Naam</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control mb-2" placeholder="Naam" [(ngModel)]="name">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label>Credits</label>
+    <div class="row">
+      <div class="col">
+        <input type="number" min="0" max="60" class="form-control mb-2" placeholder="Vak" [(ngModel)]="credits">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <label for="deadline">Deadline</label>
+    <input class="form-control" [value]="deadline" disabled>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <button class="btn btn-block btn-primary" [disabled]="name.length === 0 || deadline.length === 0" (click)="submit()">Opslaan</button>
+  </div>
+</div>
+

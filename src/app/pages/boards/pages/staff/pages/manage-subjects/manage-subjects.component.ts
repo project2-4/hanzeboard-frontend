@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 import {ActivatedRoute} from "@angular/router";
 import {map} from "rxjs/operators";
-import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEdit, faScroll } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class ManageSubjectsComponent implements OnInit {
 
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
+  faScroll = faScroll;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
