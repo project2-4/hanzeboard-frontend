@@ -36,27 +36,24 @@ export class AuthenticationService {
    */
   public async login(email: string, password: string): Promise<boolean> {
     try {
-      this.jwt = await this.http.post<JWTToken>(`${environment.apiEndpoint}/api/auth/login`, {
+      this.jwt = await this.http.post<JWTToken>(`${environment.apiEndpoint}/auth/login`, {
         email,
         password
       }).toPromise();
       localStorage.setItem('jwt', JSON.stringify(this.jwt));
       return true;
     } catch (e) {
-      console.log(e);
       return false;
     }
   }
 
   refreshToken() {
-    console.log('refreshing');
     const headers = new HttpHeaders({Authorization: `Bearer ${this.accessToken}`});
 
     return this.http.post<JWTToken>(
-      `${environment.apiEndpoint}/api/auth/refresh`,
+      `${environment.apiEndpoint}/auth/refresh`,
       {},
       { headers, withCredentials: true }).pipe(tap((jwt: JWTToken) => {
-        console.log('refreshed');
         this.jwt = jwt;
         localStorage.setItem('jwt', JSON.stringify(this.jwt));
     }));
@@ -64,8 +61,6 @@ export class AuthenticationService {
 
   /**
    * Log the user out
-   *
-   * TODO: invalidate JWT Token
    */
   public logout() {
     localStorage.removeItem('jwt');
