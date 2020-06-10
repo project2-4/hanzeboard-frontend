@@ -7,7 +7,7 @@ import {map} from "rxjs/operators";
 export interface Block {
   id?: number,
   title: string,
-  content: string,
+  content: any,
   type: string,
   files: File[],
   deleted: Boolean
@@ -50,6 +50,11 @@ export class EditSubjectComponent implements OnInit {
     this.blocks = subject.page.items.map(item => {
       item.deleted = false;
       item.files = [];
+
+      if(item.type === 'files') {
+        item.content = JSON.parse(item.content);
+      }
+
       return item;
     });
     this.pageTitle = subject.page.name;
@@ -59,12 +64,16 @@ export class EditSubjectComponent implements OnInit {
 
   onSelect(event, block) {
     block.files.push(...event.addedFiles);
-    console.log(block.files);
   }
 
   onRemove(event, block) {
-    console.log(event, block);
-    //block.files.splice(block.files.indexOf(event), 1);
+    // check if file is already upload, if so remove from content
+    if(event.key in block.content) {
+      delete block.content[event.key];
+    } else {
+      // it is a new file
+      block.files.splice(block.files.indexOf(event), 1);
+    }
   }
 
 
@@ -102,12 +111,16 @@ export class EditSubjectComponent implements OnInit {
           formData.append(`page_items[${index}][id]`, block.id as any);
         }
 
-        formData.append(`page_items[${index}][deleted]`, block.deleted ? '1' : '0');
+        formData.append(`page_items[${index}][deleted]`, block.deleted === true ? '1' : '0');
         formData.append(`page_items[${index}][title]`, block.title);
-        formData.append(`page_items[${index}][content]`, block.content);
-        formData.append(`page_items[${index}][type]`, block.type);
 
-        console.log(block);
+        if(block.type === 'files') {
+          formData.append(`page_items[${index}][content]`, JSON.stringify(block.content));
+        } else {
+          formData.append(`page_items[${index}][content]`, block.content);
+        }
+
+        formData.append(`page_items[${index}][type]`, block.type);
         block.files.forEach(file => {
           formData.append(`page_items[${index}][files][]`, file);
         })

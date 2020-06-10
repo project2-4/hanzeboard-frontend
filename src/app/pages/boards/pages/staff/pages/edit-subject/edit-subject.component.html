@@ -127,8 +127,11 @@
                 <!-- in app.component.html -->
                 <ngx-dropzone (change)="onSelect($event, block)" [multiple]="true">
                   <ngx-dropzone-label>Sleep bestand(en) hierheen!</ngx-dropzone-label>
+                  <ngx-dropzone-preview *ngFor="let f of block.content | keyvalue" [removable]="true" (removed)="onRemove(f, block)">
+                    <ngx-dropzone-label>{{ f.value }}</ngx-dropzone-label>
+                  </ngx-dropzone-preview>
                   <ngx-dropzone-preview *ngFor="let f of block.files" [removable]="true" (removed)="onRemove(f, block)">
-                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
                   </ngx-dropzone-preview>
                 </ngx-dropzone>
               </div>
