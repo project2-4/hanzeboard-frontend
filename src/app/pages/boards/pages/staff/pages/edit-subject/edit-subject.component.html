@@ -63,89 +63,57 @@
 
 <hr>
 
+<div class="blocks">
+
+</div>
 
 <ng-container *ngFor="let block of blocks">
   <ng-container *ngIf="block.type === 'text' && block.deleted === false">
     <div class="card mb-4">
       <div class="card-body">
-        <div class="row mb-4">
-          <div class="col">
-            <label>Titel</label>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
-              </div>
-            </div>
+        <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
+
+        <textarea class="form-control mb-2" [(ngModel)]="block.content"></textarea>
+
+        <div class="row mt-3">
+          <div class="col-4">
+            <button class="btn btn-block btn-info" (click)="up(block)" [disabled]="block.first">Omhoog</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-info" (click)="down(block)" [disabled]="block.last">Omlaag</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-danger" (click)="deleteBlock(block)">Verwijder block</button>
           </div>
         </div>
-
-        <div class="row mb-4">
-          <div class="col">
-            <label>Inhoud</label>
-            <div class="row">
-              <div class="col">
-                <textarea class="form-control mb-2" [(ngModel)]="block.content"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col">
-            <div class="row">
-              <div class="col">
-                <button class="btn btn-block btn-danger" (click)="deleteBlock(block)">Verwijder block</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </ng-container>
 
-
   <ng-container *ngIf="block.type === 'files' && block.deleted === false">
     <div class="card mb-4">
       <div class="card-body">
-        <div class="row mb-4">
-          <div class="col">
-            <label>Titel</label>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
-              </div>
-            </div>
-          </div>
-        </div>
+        <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
 
-        <div class="row mb-4">
-          <div class="col">
-            <label>Inhoud</label>
-            <div class="row">
-              <div class="col">
-                <!-- in app.component.html -->
-                <ngx-dropzone (change)="onSelect($event, block)" [multiple]="true">
-                  <ngx-dropzone-label>Sleep bestand(en) hierheen!</ngx-dropzone-label>
-                  <ngx-dropzone-preview *ngFor="let f of block.content | keyvalue" [removable]="true" (removed)="onRemove(f, block)">
-                    <ngx-dropzone-label>{{ f.value }}</ngx-dropzone-label>
-                  </ngx-dropzone-preview>
-                  <ngx-dropzone-preview *ngFor="let f of block.files" [removable]="true" (removed)="onRemove(f, block)">
-                    <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
-                  </ngx-dropzone-preview>
-                </ngx-dropzone>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ngx-dropzone (change)="onSelect($event, block)" [multiple]="true">
+          <ngx-dropzone-label>Sleep bestand(en) hierheen!</ngx-dropzone-label>
+          <ngx-dropzone-preview *ngFor="let f of block.content | keyvalue" [removable]="true" (removed)="onRemove(f, block)">
+            <ngx-dropzone-label>{{ f.value }}</ngx-dropzone-label>
+          </ngx-dropzone-preview>
+          <ngx-dropzone-preview *ngFor="let f of block.files" [removable]="true" (removed)="onRemove(f, block)">
+            <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+          </ngx-dropzone-preview>
+        </ngx-dropzone>
 
-        <div class="row mb-4">
-          <div class="col">
-            <div class="row">
-              <div class="col">
-                <button class="btn btn-block btn-danger" (click)="deleteBlock(block)">Verwijder block</button>
-              </div>
-            </div>
+        <div class="row mt-3">
+          <div class="col-4">
+            <button class="btn btn-block btn-info" (click)="up(block)" [disabled]="block.first">Omhoog</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-info" (click)="down(block)" [disabled]="block.last">Omlaag</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-danger" (click)="deleteBlock(block)">Verwijder block</button>
           </div>
         </div>
 
@@ -156,41 +124,23 @@
   <ng-container *ngIf="block.type === 'assignment' && block.deleted === false">
     <div class="card mb-4">
       <div class="card-body">
-        <div class="row mb-4">
-          <div class="col">
-            <label>Titel</label>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
-              </div>
-            </div>
+        <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
+        <select class="form-control" [(ngModel)]="block.content">
+          <option disabled selected value="">Selecteer opdracht</option>
+          <option *ngFor="let assignment of assigments" [value]="assignment.id">{{ assignment.name }}</option>
+        </select>
+
+        <div class="row mt-3">
+          <div class="col-4">
+            <button class="btn btn-block btn-info" (click)="up(block)" [disabled]="block.first">Omhoog</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-info" (click)="down(block)" [disabled]="block.last">Omlaag</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-danger" (click)="deleteBlock(block)">Verwijder block</button>
           </div>
         </div>
-
-        <div class="row mb-4">
-          <div class="col">
-            <label>Assignment</label>
-            <div class="row">
-              <div class="col">
-                <select class="form-control" [(ngModel)]="block.content">
-                  <option disabled selected value="">Selecteer opdracht</option>
-                  <option *ngFor="let assignment of assigments" [value]="assignment.id">{{ assignment.name }}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col">
-            <div class="row">
-              <div class="col">
-                <button class="btn btn-block btn-danger" (click)="deleteBlock(block)">Verwijder block</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </ng-container>

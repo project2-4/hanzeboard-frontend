@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 export interface Block {
   id?: number,
@@ -10,7 +11,9 @@ export interface Block {
   content: any,
   type: string,
   files: File[],
-  deleted: Boolean
+  deleted: Boolean,
+  first: Boolean,
+  last: Boolean
 }
 
 @Component({
@@ -59,6 +62,8 @@ export class EditSubjectComponent implements OnInit {
     });
     this.pageTitle = subject.page.name;
     this.pageContent = subject.page.content;
+
+    this.update();
   }
 
 
@@ -76,6 +81,35 @@ export class EditSubjectComponent implements OnInit {
     }
   }
 
+  up(block) {
+    const currentIndex = this.blocks.indexOf(block);
+    const newIndex = currentIndex - 1;
+    const temp = this.blocks[newIndex];
+    this.blocks[newIndex] = block;
+    this.blocks[currentIndex] = temp;
+    this.update();
+  }
+
+  down(block) {
+    const currentIndex = this.blocks.indexOf(block);
+    const newIndex = currentIndex + 1;
+    const temp = this.blocks[newIndex];
+    this.blocks[newIndex] = block;
+    this.blocks[currentIndex] = temp;
+    this.update();
+  }
+
+  update() {
+    this.blocks = this.blocks.map(block => {
+      block.first = false;
+      block.last = false;
+      return block;
+    });
+
+    // set first
+    this.blocks[0].first = true;
+    this.blocks[this.blocks.length - 1].last = true;
+  }
 
   public addBlock() {
     this.blocks.push({
@@ -83,7 +117,9 @@ export class EditSubjectComponent implements OnInit {
       content: '',
       type: this.blockTypeToAdd,
       files: [],
-      deleted: false
+      deleted: false,
+      first: false,
+      last: false
     } as Block);
   }
 
