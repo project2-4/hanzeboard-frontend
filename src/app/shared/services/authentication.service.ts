@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {AuthorizationService} from './authorization.service';
+import {tap} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 export interface JWTToken {
   access_token: string;
@@ -22,7 +24,6 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private router: Router, private authorizationService: AuthorizationService) {
     if (localStorage.getItem('jwt') !== null) {
-      // TODO: check if JWT is expired
       this.jwt = JSON.parse(localStorage.getItem('jwt'));
     }
   }
@@ -35,13 +36,30 @@ export class AuthenticationService {
    */
   public async login(email: string, password: string): Promise<boolean> {
     try {
-      this.jwt = await this.http.post<JWTToken>('http://127.0.0.1:8000/api/auth/login', { email, password }).toPromise();
+      this.jwt = await this.http.post<JWTToken>(`${environment.apiEndpoint}/api/auth/login`, {
+        email,
+        password
+      }).toPromise();
       localStorage.setItem('jwt', JSON.stringify(this.jwt));
       return true;
     } catch (e) {
       console.log(e);
       return false;
     }
+  }
+
+  refreshToken() {
+    console.log('refreshing');
+    const headers = new HttpHeaders({Authorization: `Bearer ${this.accessToken}`});
+
+    return this.http.post<JWTToken>(
+      `${environment.apiEndpoint}/api/auth/refresh`,
+      {},
+      { headers, withCredentials: true }).pipe(tap((jwt: JWTToken) => {
+        console.log('refreshed');
+        this.jwt = jwt;
+        localStorage.setItem('jwt', JSON.stringify(this.jwt));
+    }));
   }
 
   /**
