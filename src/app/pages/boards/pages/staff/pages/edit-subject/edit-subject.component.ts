@@ -49,6 +49,7 @@ export class EditSubjectComponent implements OnInit {
     this.name = subject.name;
     this.blocks = subject.page.items.map(item => {
       item.deleted = false;
+      item.files = [];
       return item;
     });
     this.pageTitle = subject.page.name;
@@ -106,6 +107,7 @@ export class EditSubjectComponent implements OnInit {
         formData.append(`page_items[${index}][content]`, block.content);
         formData.append(`page_items[${index}][type]`, block.type);
 
+        console.log(block);
         block.files.forEach(file => {
           formData.append(`page_items[${index}][files][]`, file);
         })
