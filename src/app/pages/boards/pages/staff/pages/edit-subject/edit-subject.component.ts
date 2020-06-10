@@ -5,10 +5,12 @@ import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 
 export interface Block {
+  id?: number,
   title: string,
   content: string,
   type: string,
-  files: File[]
+  files: File[],
+  deleted: Boolean
 }
 
 @Component({
@@ -45,20 +47,23 @@ export class EditSubjectComponent implements OnInit {
     ).toPromise();
 
     this.name = subject.name;
-    this.blocks = subject.page.items;
+    this.blocks = subject.page.items.map(item => {
+      item.deleted = false;
+      return item;
+    });
     this.pageTitle = subject.page.name;
     this.pageContent = subject.page.content;
   }
 
 
   onSelect(event, block) {
-    console.log(event);
-    block.files.push(...event.addedFiles);6
+    block.files.push(...event.addedFiles);
+    console.log(block.files);
   }
 
   onRemove(event, block) {
-    console.log(event);
-    block.files.splice(block.files.indexOf(event), 1);
+    console.log(event, block);
+    //block.files.splice(block.files.indexOf(event), 1);
   }
 
 
@@ -67,15 +72,13 @@ export class EditSubjectComponent implements OnInit {
       title: '',
       content: '',
       type: this.blockTypeToAdd,
-      files: []
+      files: [],
+      deleted: false
     } as Block);
-
-
   }
 
   public deleteBlock(block) {
-    const index = this.blocks.indexOf(block);
-    this.blocks.splice(index, 1);
+    block.deleted = true;
   }
 
 
@@ -84,15 +87,39 @@ export class EditSubjectComponent implements OnInit {
     const subjectId = this.route.snapshot.paramMap.get('subjectId');
 
     try {
-      await this.httpClient.put<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}`, {
-        name: this.name,
-        page_name: this.pageTitle,
-        page_content: this.pageContent,
-        page_items: this.blocks
-      }).toPromise();
+
+      const formData = new FormData();
+      formData.append('name', this.name)
+      formData.append('page_name', this.pageTitle);
+      formData.append('page_content', this.pageContent);
+      formData.append('_method', 'PUT');
+
+      let index = 0;
+      this.blocks.forEach(block => {
+
+        if(block.id) {
+          formData.append(`page_items[${index}][id]`, block.id as any);
+        }
+
+        formData.append(`page_items[${index}][deleted]`, block.deleted ? '1' : '0');
+        formData.append(`page_items[${index}][title]`, block.title);
+        formData.append(`page_items[${index}][content]`, block.content);
+        formData.append(`page_items[${index}][type]`, block.type);
+
+        block.files.forEach(file => {
+          formData.append(`page_items[${index}][files][]`, file);
+        })
+
+        index++;
+      });
+
+      console.log(formData);
+
+      await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}`, formData).toPromise();
 
       await this.router.navigate(['/staff/manage-subjects/' + courseId]);
     } catch (e) {
+      console.log(e);
       if(e.error.message) {
         alert(e.error.message);
       }

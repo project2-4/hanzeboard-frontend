@@ -41,7 +41,7 @@
           <div class="col">
             <select class="form-control" [(ngModel)]="blockTypeToAdd">
               <option value="text">Tekst</option>
-              <option value="file">Bestand</option>
+              <option value="files">Bestand</option>
               <option value="assignment">Assignment</option>
             </select>
           </div>
@@ -65,7 +65,7 @@
 
 
 <ng-container *ngFor="let block of blocks">
-  <ng-container *ngIf="block.type === 'text'">
+  <ng-container *ngIf="block.type === 'text' && block.deleted === false">
     <div class="card mb-4">
       <div class="card-body">
         <div class="row mb-4">
@@ -105,7 +105,7 @@
   </ng-container>
 
 
-  <ng-container *ngIf="block.type === 'file'">
+  <ng-container *ngIf="block.type === 'files' && block.deleted === false">
     <div class="card mb-4">
       <div class="card-body">
         <div class="row mb-4">
@@ -150,7 +150,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="block.type === 'assignment'">
+  <ng-container *ngIf="block.type === 'assignment' && block.deleted === false">
     <div class="card mb-4">
       <div class="card-body">
         <div class="row mb-4">
