@@ -4,10 +4,29 @@
 </small>
 
 <div class="mt-5">
-  <mat-card *ngFor="let item of page['items']">
+  <mat-card *ngFor="let item of page['items']" class="mb-3">
     <h6>{{ item.title }}</h6>
-      <mat-card-content [ngSwitch]="item.type">
-        <p *ngSwitchCase="'text'">{{ item.content }}</p>
-      </mat-card-content>
+
+    <ng-container *ngIf="item.type === 'text'">
+      <p>{{ item.content }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="item.type === 'files'">
+      <ul>
+        <li *ngFor="let file of item.content | keyvalue">
+          <a href="{{ path + file.key.replace('public', 'storage') }}" target="_blank">{{ file.value }}</a>
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-container *ngIf="item.type === 'assignment'">
+      <!-- in app.component.html -->
+      <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [accept]="'text/csv'">
+        <ngx-dropzone-label>Sleep bestand hierheen!</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </ng-container>
   </mat-card>
 </div>

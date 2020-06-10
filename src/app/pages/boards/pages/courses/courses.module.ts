@@ -14,20 +14,22 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {NgxDropzoneModule} from "ngx-dropzone";
 
 @NgModule({
   declarations: [CoursesComponent, SubjectComponent, AnnouncementsComponent, TeachersComponent],
-  imports: [
-    CommonModule,
-    CoursesRoutingModule,
-    RouterModule,
-    NgbCollapseModule,
-    MatTableModule,
-    SharedModule,
-    MatExpansionModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        CoursesRoutingModule,
+        RouterModule,
+        NgbCollapseModule,
+        MatTableModule,
+        SharedModule,
+        MatExpansionModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatCardModule,
+        NgxDropzoneModule
+    ]
 })
 export class CoursesModule { }
