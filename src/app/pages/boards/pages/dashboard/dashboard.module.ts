@@ -11,18 +11,20 @@ import { AbsenteesComponent } from './pages/absentees/absentees.component';
 import { LatestGradesComponent } from './pages/latest-grades/latest-grades.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {SharedModule} from '../../../../shared/shared.module';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
   declarations: [DashboardComponent, CourseListComponent, AbsenteesComponent, LatestGradesComponent],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatSidenavModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatSidenavModule,
+        SharedModule,
+        MatExpansionModule
+    ]
 })
 export class DashboardModule { }

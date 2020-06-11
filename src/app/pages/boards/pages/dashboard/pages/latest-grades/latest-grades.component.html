@@ -1,1 +1,20 @@
-<p>latest-grades works!</p>
+<mat-accordion [multi]="true">
+  <mat-expansion-panel *ngFor="let grade of grades">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{(grade['assignment']['subject']['name']|titlecase) + ": " + (grade['grade']| number:'1.0-1')}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <span class="badge badge-primary float-right"> {{grade['assignment']['credits'] + " EC"}} </span>
+        <span class="badge badge-secondary float-md-right"> {{grade['recorder']['abbreviation']}} </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p class="content-announcement">{{ grade['assignment']['subject']['name'] + ": " + grade['assignment']['name']}}</p>
+    <p class="content-announcement">{{ "Grade: " + (grade['grade']| number:'1.0-1') }}</p>
+    <p class="content-announcement">{{ "Credit(s): " + grade['assignment']['credits'] }}</p>
+
+    <blockquote class="blockquote mb-0 mt-3">
+      <footer class="blockquote-footer"><small>{{"by: " + grade['recorder']['user']['full_name'] + " at: " + (grade['updated_at']| date:'medium')}}</small></footer>
+    </blockquote>
+  </mat-expansion-panel>
+</mat-accordion>

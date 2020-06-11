@@ -16,7 +16,6 @@ export class AnnouncementsComponent implements OnInit {
 
   async ngOnInit() {
     this.course = parseInt(this.route.parent.snapshot.paramMap.get('course'), 10);
-
     this.announcements = await this.loadAnnouncements();
   }
 
