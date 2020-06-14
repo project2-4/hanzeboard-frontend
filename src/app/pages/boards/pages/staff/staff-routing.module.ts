@@ -15,6 +15,7 @@ import {AddAnnoucementComponent} from "./pages/add-annoucement/add-annoucement.c
 import {AssignmentsOverviewComponent} from "./pages/assignments-overview/assignments-overview.component";
 import {AddAssignmentsComponent} from "./pages/add-assignments/add-assignments.component";
 import {EditAssignmentsComponent} from "./pages/edit-assignments/edit-assignments.component";
+import {ShowSubmissionsComponent} from "./pages/show-submissions/show-submissions.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'manage-subjects/:courseId/subjects/:subjectId/assignments-overview/edit/:assignmentId',
     component: EditAssignmentsComponent
+  },
+  {
+    path: 'manage-subjects/:courseId/subjects/:subjectId/assignments-overview/show/:assignmentId',
+    component: ShowSubmissionsComponent
   },
   {
     path: 'import-grades',

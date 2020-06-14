@@ -14,19 +14,17 @@
     <ng-container *ngIf="item.type === 'files'">
       <ul>
         <li *ngFor="let file of item.content | keyvalue">
-          <a href="{{ path + file.key.replace('public', 'storage') }}" target="_blank">{{ file.value }}</a>
+          <a [href]="path + 'storage/' + file.key" target="_blank">{{ file.value }}</a>
         </li>
       </ul>
     </ng-container>
 
     <ng-container *ngIf="item.type === 'assignment'">
       <!-- in app.component.html -->
-      <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [accept]="'text/csv'">
+      <ngx-dropzone (change)="upload($event, item.content)" [multiple]="false" *ngIf="assigments[item.content] === undefined">
         <ngx-dropzone-label>Sleep bestand hierheen!</ngx-dropzone-label>
-        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-        </ngx-dropzone-preview>
       </ngx-dropzone>
+      <h3 *ngIf="assigments[item.content] !== undefined"><a [href]="path + 'storage/' + assigments[item.content].file" target="_blank">Bekijk submissie</a></h3>
     </ng-container>
   </mat-card>
 </div>

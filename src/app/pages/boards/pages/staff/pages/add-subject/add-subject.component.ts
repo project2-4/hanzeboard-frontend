@@ -18,7 +18,9 @@ export class AddSubjectComponent {
 
     try {
       await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects`, {
-        name: this.name
+        name: this.name,
+        page_content: this.name,
+        page_name: this.name
       }).toPromise();
 
       await this.router.navigate(['/staff/manage-subjects/' + courseId]);

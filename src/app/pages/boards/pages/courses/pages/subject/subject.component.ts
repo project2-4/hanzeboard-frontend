@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-subject',
@@ -14,8 +15,7 @@ export class SubjectComponent implements OnInit {
   public data = [];
   public page = [];
   public path;
-  public files = [];
-
+  public assigments = {};
 
   constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -30,15 +30,18 @@ export class SubjectComponent implements OnInit {
     });
   }
 
-  loadSubject(subject: number) {
+  async loadSubject(subject: number) {
     const url = `${environment.apiEndpoint}/courses/${this.course}/subjects/${subject}`;
-
     this.httpClient.get<any>(url).toPromise().then((res) => {
       this.data = res.message;
       this.page = res.message.page;
       this.page['items'] = this.page['items'].map(item => {
-        if(item.type === 'files') {
-          item.content = JSON.parse(item.content);
+        const json = item.content;
+
+        try {
+          item.content = JSON.parse(json);
+        } catch (e) {
+          item.content = json;
         }
 
         return item;
@@ -46,14 +49,33 @@ export class SubjectComponent implements OnInit {
 
       console.log(this.page);
     });
-  }
-  onSelect(event) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
+
+    const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
+      map(r => r.message)
+    ).toPromise()
+    this.assigments = assigments;
   }
 
-  onRemove(event) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
+  async upload(event, assigmentId) {
+    assigmentId = parseInt(JSON.parse(assigmentId));
+    this.assigments[assigmentId] = event.addedFiles[0].name;
+    // this.files.push(...event.addedFiles);
+
+    const formData = new FormData();
+    formData.append('file', event.addedFiles[0]);
+
+    try {
+      await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/assignments/${parseInt(assigmentId)}/submissions`, formData).toPromise();
+      alert('Ingeleverd!');
+    } catch (e) {
+      if(e.error.message) {
+        alert(e.error.message);
+      }
+    }
+
+    const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
+      map(r => r.message)
+    ).toPromise()
+    this.assigments = assigments;
   }
 }
