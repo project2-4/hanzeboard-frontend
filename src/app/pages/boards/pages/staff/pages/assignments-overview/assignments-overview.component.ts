@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
-import { faTrashAlt, faEdit, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEdit, faFileExport } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-assignments-overview',
@@ -21,6 +21,7 @@ export class AssignmentsOverviewComponent implements OnInit {
 
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
+  faFileExport = faFileExport;
 
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }

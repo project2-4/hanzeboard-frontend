@@ -16,10 +16,13 @@
       </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-end">
-          <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/' + subjectId+ '/assignments-overview/edit/' + row.id">
+          <button class="btn btn-info mr-1" title="Bekijk submissies" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/' + subjectId+ '/assignments-overview/show/' + row.id">
+            <fa-icon [icon]="faFileExport"></fa-icon>
+          </button>
+          <button class="btn btn-primary mr-1" title="Wijzig assigment" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/' + subjectId+ '/assignments-overview/edit/' + row.id">
             <fa-icon [icon]="faEdit"></fa-icon>
           </button>
-          <button class="btn btn-danger" title="Verwijder course" (click)="deleteCourse(row.id)">
+          <button class="btn btn-danger" title="Verwijder assigment" (click)="deleteCourse(row.id)">
             <fa-icon [icon]="faTrashAlt"></fa-icon>
           </button>
         </div>

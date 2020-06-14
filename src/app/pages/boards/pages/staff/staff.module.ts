@@ -25,10 +25,11 @@ import { AddAnnoucementComponent } from './pages/add-annoucement/add-annoucement
 import { AssignmentsOverviewComponent } from './pages/assignments-overview/assignments-overview.component';
 import { AddAssignmentsComponent } from './pages/add-assignments/add-assignments.component';
 import { EditAssignmentsComponent } from './pages/edit-assignments/edit-assignments.component';
+import { ShowSubmissionsComponent } from './pages/show-submissions/show-submissions.component';
 
 
 @NgModule({
-  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent, AddAnnoucementComponent, AssignmentsOverviewComponent, AddAssignmentsComponent, EditAssignmentsComponent],
+  declarations: [StaffComponent, CourseOverviewComponent, AddCourseComponent, ImportGradesComponent, ManageSubjectsComponent, AddSubjectComponent, EditSubjectComponent, EditCourseComponent, ReportAbsentComponent, UserManagementComponent, AddUserComponent, EditUserComponent, AddAnnoucementComponent, AssignmentsOverviewComponent, AddAssignmentsComponent, EditAssignmentsComponent, ShowSubmissionsComponent],
   imports: [
     CommonModule,
     RouterModule,
