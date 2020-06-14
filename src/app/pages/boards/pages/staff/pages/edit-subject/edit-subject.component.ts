@@ -106,9 +106,10 @@ export class EditSubjectComponent implements OnInit {
       return block;
     });
 
-    // set first
-    this.blocks[0].first = true;
-    this.blocks[this.blocks.length - 1].last = true;
+    if(this.blocks.length > 0) {
+      this.blocks[0].first = true;
+      this.blocks[this.blocks.length - 1].last = true;
+    }
   }
 
   public addBlock() {
@@ -121,10 +122,16 @@ export class EditSubjectComponent implements OnInit {
       first: false,
       last: false
     } as Block);
+
+    this.update();
   }
 
   public deleteBlock(block) {
-    block.deleted = true;
+    if(block.id !== undefined) {
+      block.deleted = true;
+    } else {
+     this.blocks.splice(this.blocks.indexOf(block), 1);
+    }
   }
 
 

@@ -14,7 +14,7 @@
     <ng-container *ngIf="item.type === 'files'">
       <ul>
         <li *ngFor="let file of item.content | keyvalue">
-          <a href="{{ path + file.key.replace('public', 'storage') }}" target="_blank">{{ file.value }}</a>
+          <a [href]="path + 'storage/' + file.key" target="_blank">{{ file.value }}</a>
         </li>
       </ul>
     </ng-container>

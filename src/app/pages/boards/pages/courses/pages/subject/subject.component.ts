@@ -36,9 +36,18 @@ export class SubjectComponent implements OnInit {
       this.data = res.message;
       this.page = res.message.page;
       this.page['items'] = this.page['items'].map(item => {
-        item.content = JSON.parse(item.content);
+        const json = item.content;
+
+        try {
+          item.content = JSON.parse(json);
+        } catch (e) {
+          item.content = json;
+        }
+
         return item;
       });
+
+      console.log(this.page);
     });
 
     const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
@@ -63,5 +72,10 @@ export class SubjectComponent implements OnInit {
         alert(e.error.message);
       }
     }
+
+    const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
+      map(r => r.message)
+    ).toPromise()
+    this.assigments = assigments;
   }
 }
