@@ -159,6 +159,8 @@ export class EditSubjectComponent implements OnInit {
 
         if(block.type === 'files') {
           formData.append(`page_items[${index}][content]`, JSON.stringify(block.content));
+        } else if (block.type === 'assignment') {
+          formData.append(`page_items[${index}][assignment_id]`, block.content);
         } else {
           formData.append(`page_items[${index}][content]`, block.content);
         }

@@ -36,12 +36,8 @@ export class SubjectComponent implements OnInit {
       this.data = res.message;
       this.page = res.message.page;
       this.page['items'] = this.page['items'].map(item => {
-        const json = item.content;
-
-        try {
-          item.content = JSON.parse(json);
-        } catch (e) {
-          item.content = json;
+        if (item.type === 'files') {
+          item.content = JSON.parse(item.content);
         }
 
         return item;
@@ -52,8 +48,9 @@ export class SubjectComponent implements OnInit {
 
     const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
       map(r => r.message)
-    ).toPromise()
+    ).toPromise();
     this.assigments = assigments;
+    console.log(this.assigments);
   }
 
   async upload(event, assigmentId) {
