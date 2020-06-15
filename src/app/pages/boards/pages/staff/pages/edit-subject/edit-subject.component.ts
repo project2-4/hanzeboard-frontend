@@ -162,7 +162,7 @@ export class EditSubjectComponent implements OnInit {
         if (block.type === 'files') {
           formData.append(`page_items[${index}][content]`, JSON.stringify(block.content));
         } else if (block.type === 'assignment') {
-          formData.append(`page_items[${index}][assignment_id]`, block.content);
+          formData.append(`page_items[${index}][assignment_id]`, block.assignment_id.toString());
         } else {
           formData.append(`page_items[${index}][content]`, block.content);
         }
