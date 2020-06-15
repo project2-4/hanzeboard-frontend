@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../../../../../environments/environment";
-import {map} from "rxjs/operators";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../../../../../environments/environment';
+import {map} from 'rxjs/operators';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export interface Block {
-  id?: number,
-  title: string,
-  content: any,
-  type: string,
-  files: File[],
-  deleted: Boolean,
-  first: Boolean,
-  last: Boolean
+  id?: number;
+  title: string;
+  content: any;
+  type: string;
+  files: File[];
+  new: boolean;
+  deleted: boolean;
+  first: boolean;
+  last: boolean;
+  assignment_id: number;
 }
 
 @Component({
@@ -23,14 +25,14 @@ export interface Block {
 })
 export class EditSubjectComponent implements OnInit {
 
-  public name: string = '';
+  public name = '';
   public blockTypeToAdd = 'text';
   public blocks: Array<Block> = [];
   public assigments = [];
   public courseId;
   public subjectId;
   public pageTitle;
-  public pageContent
+  public pageContent;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
@@ -54,7 +56,7 @@ export class EditSubjectComponent implements OnInit {
       item.deleted = false;
       item.files = [];
 
-      if(item.type === 'files') {
+      if (item.type === 'files') {
         item.content = JSON.parse(item.content);
       }
 
@@ -73,7 +75,7 @@ export class EditSubjectComponent implements OnInit {
 
   onRemove(event, block) {
     // check if file is already upload, if so remove from content
-    if(event.key in block.content) {
+    if (event.key in block.content) {
       delete block.content[event.key];
     } else {
       // it is a new file
@@ -106,7 +108,7 @@ export class EditSubjectComponent implements OnInit {
       return block;
     });
 
-    if(this.blocks.length > 0) {
+    if (this.blocks.length > 0) {
       this.blocks[0].first = true;
       this.blocks[this.blocks.length - 1].last = true;
     }
@@ -127,7 +129,7 @@ export class EditSubjectComponent implements OnInit {
   }
 
   public deleteBlock(block) {
-    if(block.id !== undefined) {
+    if (block.id !== undefined) {
       block.deleted = true;
     } else {
      this.blocks.splice(this.blocks.indexOf(block), 1);
@@ -142,7 +144,7 @@ export class EditSubjectComponent implements OnInit {
     try {
 
       const formData = new FormData();
-      formData.append('name', this.name)
+      formData.append('name', this.name);
       formData.append('page_name', this.pageTitle);
       formData.append('page_content', this.pageContent);
       formData.append('_method', 'PUT');
@@ -150,14 +152,14 @@ export class EditSubjectComponent implements OnInit {
       let index = 0;
       this.blocks.forEach(block => {
 
-        if(block.id) {
+        if (block.id) {
           formData.append(`page_items[${index}][id]`, block.id as any);
         }
 
         formData.append(`page_items[${index}][deleted]`, block.deleted === true ? '1' : '0');
         formData.append(`page_items[${index}][title]`, block.title);
 
-        if(block.type === 'files') {
+        if (block.type === 'files') {
           formData.append(`page_items[${index}][content]`, JSON.stringify(block.content));
         } else if (block.type === 'assignment') {
           formData.append(`page_items[${index}][assignment_id]`, block.content);
@@ -168,7 +170,7 @@ export class EditSubjectComponent implements OnInit {
         formData.append(`page_items[${index}][type]`, block.type);
         block.files.forEach(file => {
           formData.append(`page_items[${index}][files][]`, file);
-        })
+        });
 
         index++;
       });
@@ -180,7 +182,7 @@ export class EditSubjectComponent implements OnInit {
       await this.router.navigate(['/staff/manage-subjects/' + courseId]);
     } catch (e) {
       console.log(e);
-      if(e.error.message) {
+      if (e.error.message) {
         alert(e.error.message);
       }
     }

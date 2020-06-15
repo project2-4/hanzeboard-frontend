@@ -125,7 +125,7 @@
     <div class="card mb-4">
       <div class="card-body">
         <input type="text" class="form-control mb-2" placeholder="Titel" [(ngModel)]="block.title">
-        <select class="form-control" [(ngModel)]="block.content">
+        <select class="form-control" [(ngModel)]="block.assignment_id">
           <option disabled selected value="">Selecteer opdracht</option>
           <option *ngFor="let assignment of assigments" [value]="assignment.id">{{ assignment.name }}</option>
         </select>
