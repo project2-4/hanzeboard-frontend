@@ -11,7 +11,9 @@
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/assets/icons/android-chrome-48x48.png",
+          "/assets/icons/android-chrome-144x144.webp"
         ]
       }
     }, {
