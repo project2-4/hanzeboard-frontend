@@ -1,7 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
+import {SideBarService} from '../../services/side-bar.service';
 
 @Component({
   selector: 'app-header',
@@ -10,19 +11,19 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  form: FormGroup;
   deferredPrompt: any;
   showA2HSButton = false;
 
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthenticationService,
-              public router: Router) {
+  constructor(private authService: AuthenticationService,
+              public router: Router,
+              private sideBarService: SideBarService) {
   }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      email: this.formBuilder.control('', Validators.compose(
-        [Validators.required, Validators.pattern('^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$')]))
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.sideBarService.close();
+      }
     });
   }
 
@@ -54,5 +55,9 @@ export class HeaderComponent implements OnInit {
         }
         this.deferredPrompt = null;
       });
+  }
+
+  sidebarToggle() {
+    this.sideBarService.toggle();
   }
 }

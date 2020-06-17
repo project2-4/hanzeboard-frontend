@@ -24,6 +24,18 @@ body {
   min-height: calc(100vh - 75px - 24px);
 }
 
+@media only screen and (max-width: 600px) {
+  .mat-expansion-panel-header {
+    height: 90px !important;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .mat-expansion-panel-header {
+    height: 125px !important;
+  }
+}
+
 @media only screen and (max-width: 922px) {
   .sidenav-content {
     min-height: calc(100vh - 75px);
@@ -32,4 +44,32 @@ body {
 
 .full-width-table {
   width: 100%;
+}
+
+.mat-expansion-panel-header-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    min-width: 40px;
+  }
+}
+
+.btn-group-sm > .btn, .btn-sm {
+  padding: 0.6rem 0.6rem !important;
+  line-height: 0 !important;
+}
+
+.mat-cell {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.ng-star-inserted > * {
+  overflow: hidden;
+}
+
+.table td, .table th {
+  vertical-align: middle !important;
 }

@@ -1,5 +1,16 @@
 <mat-sidenav-container class="sidenav-container" autosize>
   <mat-sidenav #sidenav [mode]="options.mode" [(opened)]="options.opened" class="sidenav" [fixedInViewport]="options.fixed" [fixedTopGap]="options.top" [fixedBottomGap]="options.bottom">
+    <ul class="list-group list-group-flush" *ngIf="options.mode === 'over'">
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/">Dashboard </a>
+      </li>
+      <li class="list-group-item">
+        <a class="nav-link" routerLink="/staff">Staff </a>
+      </li>
+    </ul>
+    <div class="card-header" *ngIf="options.mode === 'over'">
+      Links
+    </div>
     <ng-content select=".links"></ng-content>
     <div class="card-header" *ngIf="options.mode === 'over'">
       Acties
@@ -13,7 +24,6 @@
 
   <mat-sidenav-content class="sidenav-content">
     <div class="m-4">
-<!--      <button mat-button (click)="sidenav.toggle()">Toggle</button>-->
       <ng-content></ng-content>
     </div>
   </mat-sidenav-content>
