@@ -1,11 +1,17 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MatSidenav} from '@angular/material/sidenav';
+import {SideBarService} from '../../services/side-bar.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: 'sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
+
+  @ViewChild('sidenav')
+  private sidenav: MatSidenav;
+  private subscription;
 
   public options = {
     bottom: 0,
@@ -29,7 +35,7 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private sideBarService: SideBarService) { }
 
   ngOnInit() {
     if (window.innerWidth <= 992) {
@@ -37,6 +43,13 @@ export class SidenavComponent implements OnInit {
       this.options.mode = 'over';
       this.options.opened = false;
     }
+
+    this.subscription = this.sideBarService.toggled.subscribe(() => {
+      this.sidenav.toggle();
+    });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
