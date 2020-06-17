@@ -14,7 +14,6 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SharedModule} from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {AuthTokenGrabberInterceptor} from './shared/interceptors/authTokenGrabber.interceptor';
 import {AuthTokenInjectInterceptor} from './shared/interceptors/authTokenInject.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -46,11 +45,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenGrabberInterceptor,
-      multi: true
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthTokenInjectInterceptor,
