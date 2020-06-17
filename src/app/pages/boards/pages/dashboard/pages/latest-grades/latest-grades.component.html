@@ -7,8 +7,8 @@
       <mat-panel-description>
         <span *ngIf="grade['grade'] < 5.5" class="badge badge-danger">Fail</span>
         <span *ngIf="grade['grade'] >= 5.5" class="badge badge-success">Pass</span>
-        <span class="badge badge-primary">{{grade['assignment']['credits'] + " EC"}}</span>
-        <span class="badge badge-secondary">{{grade['recorder']['abbreviation']}}</span>
+        <span class="badge badge-primary ml-1">{{grade['assignment']['credits'] + " EC"}}</span>
+        <span class="badge badge-secondary ml-1">{{grade['recorder']['abbreviation']}}</span>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <strong><p class="content-announcement">{{grade['assignment']['name']}}</p></strong>
