@@ -1,30 +1,33 @@
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="submissions" class="full-width-table">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Naam</th>
-      <td mat-cell *matCellDef="let row"> {{ row.student.user.full_name }} </td>
-    </ng-container>
+  <div class="table-responsive">
+    <table mat-table [dataSource]="submissions" class="table full-width-table">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Naam</th>
+        <td mat-cell *matCellDef="let row"> {{ row.student.user.full_name }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="student_number">
-      <th mat-header-cell *matHeaderCellDef>Studenten nummer</th>
-      <td mat-cell *matCellDef="let row"> {{ row.student.student_number }} </td>
-    </ng-container>
+      <ng-container matColumnDef="student_number">
+        <th mat-header-cell *matHeaderCellDef>Studenten nummer</th>
+        <td mat-cell *matCellDef="let row"> {{ row.student.student_number }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
 
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <div class="d-flex justify-content-end">
-          <a class="btn btn-sm btn-outline-dark mr-1" title="Bekijk submissies" target="_blank" [href]="path + 'storage/' + row.file">
-            <fa-icon [icon]="faDownload"></fa-icon>
-          </a>
-        </div>
-      </td>
-    </ng-container>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="d-flex justify-content-end">
+            <a class="btn btn-sm btn-outline-dark mr-1" title="Bekijk submissies" target="_blank"
+               [href]="path + 'storage/' + row.file">
+              <fa-icon [icon]="faDownload"></fa-icon>
+            </a>
+          </div>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+  </div>
 
 </div>

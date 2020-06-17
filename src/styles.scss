@@ -69,3 +69,7 @@ body {
 .ng-star-inserted > * {
   overflow: hidden;
 }
+
+.table td, .table th {
+  vertical-align: middle !important;
+}
