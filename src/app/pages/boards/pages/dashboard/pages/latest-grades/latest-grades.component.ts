@@ -27,4 +27,18 @@ export class LatestGradesComponent implements OnInit {
     return request.message;
   }
 
+  getRelativePercentage(list, grade, total): string {
+    const usersGrade = Math.floor(grade);
+    let count = 0;
+    for (const [key, value] of Object.entries(list)){
+      if (usersGrade <= Number.parseInt(key, 10)){
+        count += value as number;
+      }
+    }
+    if (count === 0){
+      return ' Met dit resultaat ben jij de beste student';
+    }
+    return ' (' + Math.round((count / total as number) * 100) + '%) van de studenten heeft hetzelde of een hoger cijfer behaald.';
+  }
+
 }

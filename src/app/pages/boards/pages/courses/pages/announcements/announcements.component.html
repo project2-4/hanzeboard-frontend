@@ -11,7 +11,7 @@
     <p class="content-announcement">{{announcement['content']}}</p>
 
     <blockquote class="blockquote mb-0 mt-3">
-      <footer class="blockquote-footer"><small>{{announcement['poster']['user']['full_name']}}</small></footer>
+      <footer class="blockquote-footer"><small>{{announcement['poster']['user']['full_name'] + " op: " + (announcement['updated_at']| date:'medium')}}</small></footer>
     </blockquote>
   </mat-expansion-panel>
 </mat-accordion>

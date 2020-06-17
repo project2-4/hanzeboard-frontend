@@ -2,19 +2,23 @@
   <mat-expansion-panel *ngFor="let grade of grades">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{(grade['assignment']['subject']['name']|titlecase) + ": " + (grade['grade']| number:'1.0-1')}}
+        <u><i>{{grade['assignment']['subject']['name']}}</i></u> {{ ": " + (grade['grade']| number:'1.1-1')}}
       </mat-panel-title>
       <mat-panel-description>
-        <span class="badge badge-primary float-right"> {{grade['assignment']['credits'] + " EC"}} </span>
-        <span class="badge badge-secondary float-md-right"> {{grade['recorder']['abbreviation']}} </span>
+        <span *ngIf="grade['grade'] < 5.5" class="badge badge-danger">Fail</span>
+        <span *ngIf="grade['grade'] >= 5.5" class="badge badge-success">Pass</span>
+        <span class="badge badge-primary">{{grade['assignment']['credits'] + " EC"}}</span>
+        <span class="badge badge-secondary">{{grade['recorder']['abbreviation']}}</span>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p class="content-announcement">{{ grade['assignment']['subject']['name'] + ": " + grade['assignment']['name']}}</p>
-    <p class="content-announcement">{{ "Grade: " + (grade['grade']| number:'1.0-1') }}</p>
-    <p class="content-announcement">{{ "Credit(s): " + grade['assignment']['credits'] }}</p>
+    <strong><p class="content-announcement">{{grade['assignment']['name']}}</p></strong>
+    <p class="content-announcement"><i>{{"Jouw cijfer: "}}</i> {{(grade['grade']| number:'1.0-2') + getRelativePercentage(grade['assignment']['grade_overview'], grade['grade'], grade['assignment']['total_submissions'])}}</p>
+    <p class="content-announcement"><i>{{"Slagingspercentage: "}}</i> {{grade['assignment']['passed'] + " student(en) heeft/ hebben het gehaald (" +  ((grade['assignment']['passed'] / grade['assignment']['total_submissions']) * 100| number:'1.0-1') + "%)"}}</p>
+    <p class="content-announcement"><i>{{"Gemiddeld cijfer: "}}</i> {{(grade['assignment']['avg_grade']| number:'1.0-2')}}</p>
+    <p class="content-announcement"><i>{{"Credit(s): "}}</i> {{grade['assignment']['credits']}}</p>
 
     <blockquote class="blockquote mb-0 mt-3">
-      <footer class="blockquote-footer"><small>{{"by: " + grade['recorder']['user']['full_name'] + " at: " + (grade['updated_at']| date:'medium')}}</small></footer>
+      <footer class="blockquote-footer"><small>{{"Door: " + grade['recorder']['user']['full_name'] + " op: " + (grade['updated_at']| date:'medium')}}</small></footer>
     </blockquote>
   </mat-expansion-panel>
 </mat-accordion>
