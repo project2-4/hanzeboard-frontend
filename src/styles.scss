@@ -24,6 +24,18 @@ body {
   min-height: calc(100vh - 75px - 24px);
 }
 
+@media only screen and (max-width: 600px) {
+  .mat-expansion-panel-header {
+    height: 90px !important;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .mat-expansion-panel-header {
+    height: 125px !important;
+  }
+}
+
 @media only screen and (max-width: 922px) {
   .sidenav-content {
     min-height: calc(100vh - 75px);
@@ -52,4 +64,8 @@ body {
 .mat-cell {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
+}
+
+.ng-star-inserted > * {
+  overflow: hidden;
 }

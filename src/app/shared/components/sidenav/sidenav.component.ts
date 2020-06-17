@@ -44,8 +44,12 @@ export class SidenavComponent implements OnInit, OnDestroy {
       this.options.opened = false;
     }
 
-    this.subscription = this.sideBarService.toggled.subscribe(() => {
-      this.sidenav.toggle();
+    this.subscription = this.sideBarService.toggled.subscribe((action) => {
+      if (action === 'toggle') {
+        this.sidenav.toggle();
+      } else if (action === 'close') {
+        this.sidenav.close();
+      }
     });
   }
 

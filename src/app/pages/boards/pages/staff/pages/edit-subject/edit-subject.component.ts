@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../../../environments/environment';
 import {map} from 'rxjs/operators';
+import { faTrashAlt, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export interface Block {
@@ -25,6 +26,10 @@ export interface Block {
 })
 export class EditSubjectComponent implements OnInit {
 
+  faTrashAlt = faTrashAlt;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+
   public name = '';
   public blockTypeToAdd = 'text';
   public blocks: Array<Block> = [];
@@ -45,11 +50,9 @@ export class EditSubjectComponent implements OnInit {
       })
     ).toPromise();
 
-    this.assigments = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}/assignments`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise();
+    this.assigments = await this.httpClient
+      .get<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}/assignments`)
+      .pipe(map(response => response.message)).toPromise();
 
     this.name = subject.name;
     this.blocks = subject.page.items.map(item => {
@@ -115,7 +118,7 @@ export class EditSubjectComponent implements OnInit {
   }
 
   public addBlock() {
-    this.blocks.push({
+    this.blocks.unshift({
       title: '',
       content: '',
       type: this.blockTypeToAdd,

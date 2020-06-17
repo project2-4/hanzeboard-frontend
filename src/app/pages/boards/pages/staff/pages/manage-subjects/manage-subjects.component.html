@@ -7,17 +7,17 @@
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>
-        <button class="btn btn-primary float-right" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/add'">Nieuw vak</button>
+        <button class="btn btn-outline-primary float-right" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/add'">Nieuw vak</button>
       </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-end">
-          <button class="btn btn-info mr-1" title="Assignments" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/' + row.id + '/assignments-overview'">
+          <button class="btn btn-sm btn-outline-dark mr-1" title="Assignments" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/' + row.id + '/assignments-overview'">
             <fa-icon [icon]="faScroll"></fa-icon>
           </button>
-          <button class="btn btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/edit/' + row.id">
+          <button class="btn btn-sm btn-primary mr-1" title="Wijzig course" [routerLink]="'/staff/manage-subjects/'+ courseId +'/subjects/edit/' + row.id">
             <fa-icon [icon]="faEdit"></fa-icon>
           </button>
-          <button class="btn btn-danger" title="Verwijder course" (click)="deleteSubject(row.id)">
+          <button class="btn btn-sm btn-danger" title="Verwijder course" (click)="deleteSubject(row.id)">
             <fa-icon [icon]="faTrashAlt"></fa-icon>
           </button>
         </div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../../../../environments/environment";
-import {ActivatedRoute} from "@angular/router";
-import {map} from "rxjs/operators";
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../../../../environments/environment';
+import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
 import { faTrashAlt, faEdit, faScroll } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -33,7 +33,7 @@ export class ManageSubjectsComponent implements OnInit {
   }
 
   public async deleteSubject(id) {
-    if(confirm('Weet u het zeker?')) {
+    if (confirm('Weet u het zeker?')) {
       await this.httpClient.delete(`${environment.apiEndpoint}/courses/${this.courseId}/subjects/${id}`).toPromise();
       this.subjects = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.courseId}/subjects`).pipe(
         map(response => response.message)

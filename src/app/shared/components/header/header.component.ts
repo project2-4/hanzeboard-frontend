@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.sideBarService.toggle();
+        this.sideBarService.close();
       }
     });
   }
