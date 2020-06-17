@@ -33,3 +33,23 @@ body {
 .full-width-table {
   width: 100%;
 }
+
+.mat-expansion-panel-header-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    min-width: 40px;
+  }
+}
+
+.btn-group-sm > .btn, .btn-sm {
+  padding: 0.6rem 0.6rem !important;
+  line-height: 0 !important;
+}
+
+.mat-cell {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
