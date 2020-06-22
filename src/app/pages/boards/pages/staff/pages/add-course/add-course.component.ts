@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-course',
@@ -80,7 +81,7 @@ export class AddCourseComponent implements OnInit {
       await this.router.navigate(['/staff/courses/overview']);
     } catch (e) {
       if (e.error.message) {
-        alert(e.error.message);
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
       }
     }
   }

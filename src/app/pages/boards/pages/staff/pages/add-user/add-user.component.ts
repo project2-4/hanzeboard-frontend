@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-user',
@@ -46,8 +47,8 @@ export class AddUserComponent implements OnInit {
 
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+        if (e.error.message) {
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
         }
       }
     } else if(this.type === 'student') {
@@ -65,8 +66,8 @@ export class AddUserComponent implements OnInit {
 
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+        if (e.error.message) {
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
         }
       }
     }
