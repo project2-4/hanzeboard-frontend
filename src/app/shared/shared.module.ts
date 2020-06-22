@@ -6,6 +6,7 @@ import {SidenavComponent} from './components/sidenav/sidenav.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HasRoleDirective } from './directives/has-role.directive';
+import { TranslatePipe } from './pipes/translate.pipe';
 import {RouterModule} from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
@@ -31,6 +32,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatHeaderRowDefDirective,
     IsStaffDirective,
     DragDropSearchComponent,
+    TranslatePipe
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     DragDropSearchComponent,
     MatHeaderRowDefDirective,
     SidenavComponent,
+    TranslatePipe,
   ]
 })
 export class SharedModule { }

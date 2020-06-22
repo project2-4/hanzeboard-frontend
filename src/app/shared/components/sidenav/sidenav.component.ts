@@ -1,6 +1,7 @@
 import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material/sidenav';
 import {SideBarService} from '../../services/side-bar.service';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -35,7 +36,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(private sideBarService: SideBarService) { }
+  constructor(private sideBarService: SideBarService,
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
     if (window.innerWidth <= 992) {
@@ -55,5 +57,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

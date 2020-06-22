@@ -8,8 +8,8 @@
         <span class="badge badge-secondary float-md-right"> {{absentee['profile']['abbreviation']}} </span>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p class="content-announcement">{{ absentee['profile']['status']['status'] + " tot: " + (absentee['profile']['status']['until']| date:'medium')}}</p>
-    <p class="content-announcement">{{ "Office: " + absentee['profile']['office_location']}}</p>
+    <p class="content-announcement">{{ (absentee['profile']['status']['status'] | translate) + " tot: " + absentee['profile']['status']['until_formatted']}}</p>
+    <p class="content-announcement">{{ "Kantoor: " + absentee['profile']['office_location']}}</p>
     <p class="content-announcement">{{ "Email: " + absentee['email']}}</p>
   </mat-expansion-panel>
 </mat-accordion>
