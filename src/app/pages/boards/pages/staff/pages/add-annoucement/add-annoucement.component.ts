@@ -23,20 +23,30 @@ export class AddAnnoucementComponent implements OnInit {
   }
 
   public async submit() {
-    if(confirm('Weet u het zeker?')) {
-      try {
-        await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.courseId}/announcements`, {
-          title: this.title,
-          content: this.content
-        }).toPromise();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        try {
+          this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.courseId}/announcements`, {
+            title: this.title,
+            content: this.content
+          }).toPromise();
 
-        await this.router.navigate(['/staff']);
-      } catch (e) {
-        if (e.error.message) {
-          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+          this.router.navigate(['/staff']);
+        } catch (e) {
+          if (e.error.message) {
+            Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+          }
         }
       }
-    }
+      });
   }
 
 }
