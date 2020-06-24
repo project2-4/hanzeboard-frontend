@@ -67,13 +67,13 @@ export class SubjectComponent implements OnInit {
       Swal.fire('Ingeleverd!', 'success');
     } catch (e) {
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
 
     const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
       map(r => r.message)
-    ).toPromise()
+    ).toPromise();
     this.assigments = assigments;
   }
 }

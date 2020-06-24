@@ -187,7 +187,7 @@ export class EditSubjectComponent implements OnInit {
     } catch (e) {
       console.log(e);
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }

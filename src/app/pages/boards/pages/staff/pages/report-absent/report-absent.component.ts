@@ -46,7 +46,7 @@ export class ReportAbsentComponent implements OnInit {
         until: `${this.untillDate.year}-${month}-${day}`
       }).toPromise();
 
-      Swal.fire('Good job!', 'Toegevoegd!', 'success');
+      Swal.fire('Goed gedaan!', 'Absentie toegevoegd!', 'success');
       await this.router.navigate(['/staff']);
 
     } catch (e) {

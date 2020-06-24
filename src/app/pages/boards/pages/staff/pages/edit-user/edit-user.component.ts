@@ -70,7 +70,7 @@ export class EditUserComponent implements OnInit {
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
         if (e.error.message) {
-          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     } else if(this.type === 'student') {
@@ -87,7 +87,7 @@ export class EditUserComponent implements OnInit {
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
         if (e.error.message) {
-          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     }

@@ -27,7 +27,7 @@ export class CoursesComponent implements OnInit {
 
   async unenroll() {
     const result = await Swal.fire({
-      title: 'Weet je het zeker?',
+      title: 'Weet u het zeker?',
       text: "Deze actie kan niet ongedaan worden!",
       icon: 'warning',
       showCancelButton: true,
@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit {
         await this.router.navigate(['/dashboard']);
       } catch (e) {
         if (e.error.message) {
-          await Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     }

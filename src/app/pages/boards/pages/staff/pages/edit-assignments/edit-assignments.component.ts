@@ -51,7 +51,7 @@ export class EditAssignmentsComponent implements OnInit {
       await this.router.navigate([`/staff/manage-subjects/${this.courseId}/subjects/${this.subjectId}/assignments-overview`]);
     } catch (e) {
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }

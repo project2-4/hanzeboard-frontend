@@ -27,7 +27,7 @@ export class AddSubjectComponent {
       await this.router.navigate(['/staff/manage-subjects/' + courseId]);
     } catch (e) {
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }

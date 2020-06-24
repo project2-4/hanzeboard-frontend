@@ -73,12 +73,12 @@ export class ImportGradesComponent implements OnInit {
 
     try {
       await this.httpClient.post<any>(`${environment.apiEndpoint}/grades`, formData).toPromise();
-      Swal.fire('Good job!', 'Cijfers zijn geimporteerd!', 'success');
+      Swal.fire('Goed gedaan!', 'Cijfers zijn geimporteerd!', 'success');
 
       await this.router.navigate(['/staff']);
     } catch (e) {
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }
