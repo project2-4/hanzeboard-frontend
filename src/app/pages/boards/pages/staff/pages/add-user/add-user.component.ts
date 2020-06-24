@@ -16,8 +16,6 @@ export class AddUserComponent implements OnInit {
   infix = '';
   lastName = '';
   email = '';
-  password = '';
-  confirmPassword = '';
 
   abbreviation = '';
   officeLocation = '';
@@ -39,8 +37,6 @@ export class AddUserComponent implements OnInit {
           email: this.email,
           last_name: this.lastName,
           role_id: 1,
-          password: this.password,
-          password_confirmation: this.confirmPassword,
           abbreviation: this.abbreviation,
           office_location: this.officeLocation
         }).toPromise();
@@ -59,8 +55,6 @@ export class AddUserComponent implements OnInit {
           email: this.email,
           last_name: this.lastName,
           role_id: 1,
-          password: this.password,
-          password_confirmation: this.confirmPassword,
           student_number: this.studentNumber,
         }).toPromise();
 
