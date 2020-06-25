@@ -51,15 +51,16 @@ export class UserManagementComponent implements OnInit {
         this.staffs = await this.httpClient.get<any>(`${environment.apiEndpoint}/staff`).pipe(
           map(response => response.message)
         ).toPromise();
+
+        Swal.fire(
+          'Verwijderd!',
+          'Medewerker met succes verwijderd.',
+          'success'
+        );
       }
-    }).then(() => {
-      Swal.fire(
-        'Verwijderd!',
-        'Medewerker met succes verwijderd.',
-        'success'
-      );
-    });;
+    });
   }
+
 
   async deleteStudent(id) {
     Swal.fire({
@@ -76,13 +77,14 @@ export class UserManagementComponent implements OnInit {
         this.students = await this.httpClient.get<any>(`${environment.apiEndpoint}/students`).pipe(
           map(response => response.message)
         ).toPromise();
+
+        Swal.fire(
+          'Verwijderd!',
+          'Student met succes verwijderd.',
+          'success'
+        );
+
       }
-    }).then(() => {
-      Swal.fire(
-        'Verwijderd!',
-        'Student met succes verwijderd.',
-        'success'
-      );
-    });;
-  }
+    })
+  };
 }

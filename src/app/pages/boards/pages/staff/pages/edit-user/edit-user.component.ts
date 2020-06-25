@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import Swal from "sweetalert2";
+import {UserService} from "../../../../../../shared/services/user.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -25,7 +26,8 @@ export class EditUserComponent implements OnInit {
 
   userId = null;
 
-  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private router: Router) {}
+  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private router: Router,
+              private user: UserService) {}
 
   async ngOnInit() {
     this.type = this.route.snapshot.paramMap.get('type');
@@ -55,40 +57,22 @@ export class EditUserComponent implements OnInit {
   }
 
   public async submit() {
-    if(this.type === 'staff') {
-      try {
-        await this.httpClient.put<any>(`${environment.apiEndpoint}/staff/${this.userId}`, {
-          first_name: this.firstName,
-          infix: this.infix,
-          email: this.email,
-          last_name: this.lastName,
-          role_id: 1,
-          abbreviation: this.abbreviation,
-          office_location: this.officeLocation
-        }).toPromise();
+    const body = {
+      first_name: this.firstName,
+      infix: this.infix,
+      email: this.email,
+      last_name: this.lastName,
+      role_id: 1,
+      abbreviation: this.abbreviation,
+      office_location: this.officeLocation
+    };
 
-        await this.router.navigate(['/staff/user-management']);
-      } catch (e) {
-        if (e.error.message) {
-          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
-        }
-      }
-    } else if(this.type === 'student') {
-      try {
-        await this.httpClient.put<any>(`${environment.apiEndpoint}/students/${this.userId}`, {
-          first_name: this.firstName,
-          infix: this.infix,
-          email: this.email,
-          last_name: this.lastName,
-          role_id: 1,
-          student_number: this.studentNumber,
-        }).toPromise();
-
-        await this.router.navigate(['/staff/user-management']);
-      } catch (e) {
-        if (e.error.message) {
-          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
-        }
+    try {
+      await this.user.save(this.type, body);
+      await this.router.navigate(['/staff/user-management']);
+    } catch (e) {
+      if (e.error.message) {
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }
