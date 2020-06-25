@@ -5,6 +5,7 @@ import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import { faTrashAlt, faEdit, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import Swal from "sweetalert2";
+import {AppModule} from "../../../../../../app.module";
 
 @Component({
   selector: 'app-assignments-overview',
@@ -41,15 +42,7 @@ export class AssignmentsOverviewComponent implements OnInit {
     const courseId = this.route.snapshot.paramMap.get('courseId');
     const subjectId = this.route.snapshot.paramMap.get('subjectId');
 
-    Swal.fire({
-      title: 'Weet u het zeker?',
-      text: 'U kan dit niet terug draaien.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, ik weet het zeker!'
-    }).then(async (result) => {
+    Swal.fire(AppModule.SWAL_CONFIRM).then(async (result) => {
       if (result.value) {
         await this.httpClient.delete(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}/assignments/${id}`).toPromise();
         this.assigments = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}/assignments`)

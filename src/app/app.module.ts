@@ -58,4 +58,14 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  static SWAL_CONFIRM: any = {
+    title: 'Weet u het zeker?',
+    text: 'U kan dit niet terug draaien.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, ik weet het zeker!'
+  };
+}

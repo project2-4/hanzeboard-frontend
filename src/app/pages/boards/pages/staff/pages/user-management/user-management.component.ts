@@ -4,6 +4,7 @@ import {environment} from '../../../../../../../environments/environment';
 import {map} from 'rxjs/operators';
 import { faTrashAlt, faEdit, faTasks } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import {AppModule} from "../../../../../../app.module";
 
 @Component({
   selector: 'app-user-management',
@@ -37,15 +38,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   async deleteStaff(id) {
-    Swal.fire({
-      title: 'Weet u het zeker?',
-      text: 'U kan dit niet terug draaien.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, ik weet het zeker!'
-    }).then(async (result) => {
+    Swal.fire(AppModule.SWAL_CONFIRM).then(async (result) => {
       if (result.value) {
         await this.httpClient.delete(`${environment.apiEndpoint}/staff/${id}`).toPromise();
         this.staffs = await this.httpClient.get<any>(`${environment.apiEndpoint}/staff`).pipe(
@@ -63,15 +56,7 @@ export class UserManagementComponent implements OnInit {
 
 
   async deleteStudent(id) {
-    Swal.fire({
-      title: 'Weet u het zeker?',
-      text: 'U kan dit niet terug draaien.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, ik weet het zeker!'
-    }).then(async (result) => {
+    Swal.fire(AppModule.SWAL_CONFIRM).then(async (result) => {
       if (result.value) {
         await this.httpClient.delete(`${environment.apiEndpoint}/students/${id}`).toPromise();
         this.students = await this.httpClient.get<any>(`${environment.apiEndpoint}/students`).pipe(
