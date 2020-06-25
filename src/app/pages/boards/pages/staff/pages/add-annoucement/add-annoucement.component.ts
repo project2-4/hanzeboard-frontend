@@ -3,6 +3,7 @@ import {environment} from "../../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {AppModule} from "../../../../../../app.module";
 
 @Component({
   selector: 'app-add-annoucement',
@@ -23,15 +24,7 @@ export class AddAnnoucementComponent implements OnInit {
   }
 
   public async submit() {
-    Swal.fire({
-      title: 'Weet u het zeker?',
-      text: 'U kan dit niet terug draaien.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, ik weet het zeker!'
-    }).then(async (result) => {
+    Swal.fire(AppModule.SWAL_CONFIRM).then(async (result) => {
       if (result.value) {
         try {
           await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.courseId}/announcements`, {

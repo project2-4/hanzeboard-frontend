@@ -16,15 +16,17 @@ export class AddCourseComponent implements OnInit {
 
   public amountOfSubjects: number = 3;
 
+  public groupsOutput: Array<any> = [];
+  public studentsOutput: Array<any> = [];
+  public name: string = '';
+  public staffOutput: Array<any> = [];
+  public subjects: Array<string> = [];
+
   public staff: Array<any>;
   public groups: Array<any>;
   public students: Array<any>;
 
-  public name: string = '';
-  public staffOutput: Array<any> = [];
-  public groupsOutput: Array<any> = [];
-  public studentsOutput: Array<any> = [];
-  public subjects: Array<string> = [];
+
 
   constructor(private httpClient: HttpClient, private router: Router, private courses: CourseService) { }
 
@@ -42,12 +44,12 @@ export class AddCourseComponent implements OnInit {
     this.groupsOutput = e.map(val => val.id);
   }
 
-  public studentsUpdate(e) {
-    this.studentsOutput = e.map(val => val.id);
-  }
-
   public arrayOf(n) {
     return new Array(n);
+  }
+
+  public studentsUpdate(e) {
+    this.studentsOutput = e.map(val => val.id);
   }
 
   public increaseAmountOfSubjects() {
