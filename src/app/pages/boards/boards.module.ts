@@ -5,7 +5,6 @@ import { BoardsRoutingModule } from './boards-routing.module';
 import { BoardComponent } from './board/board.component';
 import {SharedModule} from '../../shared/shared.module';
 import {CoursesModule} from './pages/courses/courses.module';
-import {GradesModule} from './pages/grades/grades.module';
 import {StaffModule} from './pages/staff/staff.module';
 
 
@@ -16,7 +15,6 @@ import {StaffModule} from './pages/staff/staff.module';
     BoardsRoutingModule,
     SharedModule,
     CoursesModule,
-    GradesModule,
     StaffModule
   ]
 })

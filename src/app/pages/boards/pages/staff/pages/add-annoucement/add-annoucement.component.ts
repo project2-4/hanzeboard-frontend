@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {environment} from "../../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-annoucement',
@@ -22,20 +23,35 @@ export class AddAnnoucementComponent implements OnInit {
   }
 
   public async submit() {
-    if(confirm('Weet u het zeker?')) {
-      try {
-        await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.courseId}/announcements`, {
-          title: this.title,
-          content: this.content
-        }).toPromise();
+    Swal.fire({
+      title: 'Weet u het zeker?',
+      text: 'U kan dit niet terug draaien.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, ik weet het zeker!'
+    }).then(async (result) => {
+      if (result.value) {
+        try {
+          await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.courseId}/announcements`, {
+            title: this.title,
+            content: this.content
+          }).toPromise().then(() => {
+            Swal.fire(
+              'Aangemaakt!',
+              'Je hebt met succes een announcement aangemaakt!',
+              'success'
+            );
+          });
 
-        await this.router.navigate(['/staff']);
-      } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+          await this.router.navigate(['/staff']);
+        } catch (e) {
+          if (e.error.message) {
+            Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
+          }
         }
       }
-    }
+    });
   }
-
 }

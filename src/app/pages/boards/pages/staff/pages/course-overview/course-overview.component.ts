@@ -3,6 +3,7 @@ import {map} from "rxjs/operators";
 import {environment} from '../../../../../../../environments/environment';
 import { faTrashAlt, faEdit, faTasks, faBullhorn } from '@fortawesome/free-solid-svg-icons';
 import {HttpClient} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -29,12 +30,28 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   public async deleteCourse(id) {
-    if(confirm('Weet u het zeker?')) {
-      await this.httpClient.delete(`${environment.apiEndpoint}/courses/${id}`).toPromise();
-      this.courses = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).pipe(
-        map(response => response.message)
-      ).toPromise();
-    }
+    Swal.fire({
+      title: 'Weet u het zeker?',
+      text: 'U kan dit niet terug draaien.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, ik weet het zeker!'
+    }).then(async (result) => {
+      if (result.value) {
+        await this.httpClient.delete(`${environment.apiEndpoint}/courses/${id}`).toPromise();
+        this.courses = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).pipe(
+          map(response => response.message)
+        ).toPromise();
+      }
+    }).then(() => {
+      Swal.fire(
+        'Verwijderd!',
+        'Course met succes verwijderd.',
+        'success'
+      );
+    });;
   }
 
 }

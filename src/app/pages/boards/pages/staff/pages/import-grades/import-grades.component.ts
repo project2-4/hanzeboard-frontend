@@ -3,6 +3,7 @@ import {environment} from "../../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-import-grades',
@@ -72,12 +73,12 @@ export class ImportGradesComponent implements OnInit {
 
     try {
       await this.httpClient.post<any>(`${environment.apiEndpoint}/grades`, formData).toPromise();
-      alert('Cijfers zijn geimporteerd!');
+      Swal.fire('Goed gedaan!', 'Cijfers zijn geimporteerd!', 'success');
 
       await this.router.navigate(['/staff']);
     } catch (e) {
-      if(e.error.message) {
-        alert(e.error.message);
+      if (e.error.message) {
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }

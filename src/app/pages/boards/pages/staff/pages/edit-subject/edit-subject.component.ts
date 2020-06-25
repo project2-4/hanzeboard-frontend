@@ -5,6 +5,7 @@ import {environment} from '../../../../../../../environments/environment';
 import {map} from 'rxjs/operators';
 import { faTrashAlt, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import Swal from "sweetalert2";
 
 export interface Block {
   id?: number;
@@ -186,7 +187,7 @@ export class EditSubjectComponent implements OnInit {
     } catch (e) {
       console.log(e);
       if (e.error.message) {
-        alert(e.error.message);
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
   }

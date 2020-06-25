@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-user',
@@ -15,8 +16,6 @@ export class AddUserComponent implements OnInit {
   infix = '';
   lastName = '';
   email = '';
-  password = '';
-  confirmPassword = '';
 
   abbreviation = '';
   officeLocation = '';
@@ -38,16 +37,14 @@ export class AddUserComponent implements OnInit {
           email: this.email,
           last_name: this.lastName,
           role_id: 1,
-          password: this.password,
-          password_confirmation: this.confirmPassword,
           abbreviation: this.abbreviation,
           office_location: this.officeLocation
         }).toPromise();
 
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+        if (e.error.message) {
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     } else if(this.type === 'student') {
@@ -58,15 +55,13 @@ export class AddUserComponent implements OnInit {
           email: this.email,
           last_name: this.lastName,
           role_id: 1,
-          password: this.password,
-          password_confirmation: this.confirmPassword,
           student_number: this.studentNumber,
         }).toPromise();
 
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+        if (e.error.message) {
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     }

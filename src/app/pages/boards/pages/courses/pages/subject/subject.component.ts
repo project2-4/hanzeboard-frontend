@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {map} from "rxjs/operators";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-subject',
@@ -63,16 +64,16 @@ export class SubjectComponent implements OnInit {
 
     try {
       await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/assignments/${parseInt(assigmentId)}/submissions`, formData).toPromise();
-      alert('Ingeleverd!');
+      Swal.fire('Ingeleverd!', 'success');
     } catch (e) {
-      if(e.error.message) {
-        alert(e.error.message);
+      if (e.error.message) {
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
       }
     }
 
     const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
       map(r => r.message)
-    ).toPromise()
+    ).toPromise();
     this.assigments = assigments;
   }
 }

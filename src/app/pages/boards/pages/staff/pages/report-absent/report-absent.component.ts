@@ -3,6 +3,7 @@ import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-report-absent',
@@ -43,13 +44,13 @@ export class ReportAbsentComponent implements OnInit {
       await this.httpClient.put(`${environment.apiEndpoint}/staff/${this.selectedStaff}/status`, {
         status: this.selectedReason,
         until: `${this.untillDate.year}-${month}-${day}`
-      }).toPromise()
+      }).toPromise();
 
-      alert('toegevoegd');
+      Swal.fire('Goed gedaan!', 'Absentie toegevoegd!', 'success');
       await this.router.navigate(['/staff']);
 
     } catch (e) {
-      alert('er ging iets mis')
+      Swal.fire({icon: 'error', title: 'Oops...', text: 'Er ging iets mis!'});
     }
   }
 

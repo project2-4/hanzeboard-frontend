@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {AuthorizationService} from './authorization.service';
 import {tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 
@@ -22,7 +21,7 @@ export class AuthenticationService {
    */
   private jwt: JWTToken = null;
 
-  constructor(private http: HttpClient, private router: Router, private authorizationService: AuthorizationService) {
+  constructor(private http: HttpClient, private router: Router) {
     if (localStorage.getItem('jwt') !== null) {
       this.jwt = JSON.parse(localStorage.getItem('jwt'));
     }
@@ -76,7 +75,7 @@ export class AuthenticationService {
   }
 
   public set accessToken(token: string) {
-    if(this.jwt) {
+    if (this.jwt) {
       this.jwt.access_token = token;
       localStorage.setItem('jwt', JSON.stringify(this.jwt));
     }

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-user',
@@ -68,8 +69,8 @@ export class EditUserComponent implements OnInit {
 
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+        if (e.error.message) {
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     } else if(this.type === 'student') {
@@ -85,8 +86,8 @@ export class EditUserComponent implements OnInit {
 
         await this.router.navigate(['/staff/user-management']);
       } catch (e) {
-        if(e.error.message) {
-          alert(e.error.message);
+        if (e.error.message) {
+          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
         }
       }
     }

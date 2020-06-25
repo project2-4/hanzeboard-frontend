@@ -42,29 +42,6 @@
   </div>
 </div>
 
-
-<div class="row mb-4">
-  <div class="col">
-    <label>Wachtwoord</label>
-    <div class="row">
-      <div class="col">
-        <input type="password" class="form-control mb-2" placeholder="Wachtwoord" [(ngModel)]="password">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row mb-4">
-  <div class="col">
-    <label>Herhaal wachtwoord</label>
-    <div class="row">
-      <div class="col">
-        <input type="password" class="form-control mb-2" placeholder="Wachtwoord" [(ngModel)]="confirmPassword">
-      </div>
-    </div>
-  </div>
-</div>
-
 <ng-container *ngIf="type === 'staff'">
   <div class="row mb-4">
     <div class="col">
@@ -104,6 +81,6 @@
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary" [disabled]="firstName.length === 0 || lastName.length === 0 || email.length === 0 || password.length === 0" (click)="submit()">Toevoegen</button>
+    <button class="btn btn-block btn-primary" [disabled]="firstName.length === 0 || lastName.length === 0 || email.length === 0" (click)="submit()">Toevoegen</button>
   </div>
 </div>
