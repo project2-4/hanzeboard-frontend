@@ -185,7 +185,7 @@ export class EditSubjectComponent implements OnInit {
     } catch (e) {
       console.log(e);
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide ' + e.error.errors[Object.keys(e.error.errors)[0]]});
+        Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide. ' + e.error.errors[Object.keys(e.error.errors)[0]]});
       }
     }
   }

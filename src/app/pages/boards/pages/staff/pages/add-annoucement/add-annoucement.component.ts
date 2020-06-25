@@ -41,7 +41,7 @@ export class AddAnnoucementComponent implements OnInit {
           await this.router.navigate(['/staff']);
         } catch (e) {
           if (e.error.message) {
-            Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide ' + e.error.errors[Object.keys(e.error.errors)[0]]});
+            Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide. ' + e.error.errors[Object.keys(e.error.errors)[0]]});
           }
         }
       }
