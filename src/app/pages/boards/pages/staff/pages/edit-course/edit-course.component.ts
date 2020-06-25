@@ -4,6 +4,7 @@ import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {CourseService} from "../../../../../../shared/services/course.service";
 
 @Component({
   selector: 'app-edit-course',
@@ -26,7 +27,7 @@ export class EditCourseComponent implements OnInit {
 
   private courseId;
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private courses: CourseService) { }
 
   async ngOnInit() {
     this.courseId = this.route.snapshot.paramMap.get('courseId');
@@ -38,23 +39,9 @@ export class EditCourseComponent implements OnInit {
 
     this.name = course.name;
 
-    this.staff = await this.httpClient.get<any>(`${environment.apiEndpoint}/staff`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise();
-
-    this.groups = await this.httpClient.get<any>(`${environment.apiEndpoint}/groups`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise()
-
-    this.students = await this.httpClient.get<any>(`${environment.apiEndpoint}/students`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise()
+    this.staff = await this.courses.getStaff();
+    this.groups = await this.courses.getGroups();
+    this.students = await this.courses.getStudents();
   }
 
   public staffUpdate(e) {

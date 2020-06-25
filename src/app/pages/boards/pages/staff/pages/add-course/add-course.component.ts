@@ -5,6 +5,7 @@ import {environment} from "../../../../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {CourseService} from "../../../../../../shared/services/course.service";
 
 @Component({
   selector: 'app-add-course',
@@ -25,26 +26,12 @@ export class AddCourseComponent implements OnInit {
   public studentsOutput: Array<any> = [];
   public subjects: Array<string> = [];
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router, private courses: CourseService) { }
 
   async ngOnInit() {
-    this.staff = await this.httpClient.get<any>(`${environment.apiEndpoint}/staff`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise();
-
-    this.groups = await this.httpClient.get<any>(`${environment.apiEndpoint}/groups`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise()
-
-    this.students = await this.httpClient.get<any>(`${environment.apiEndpoint}/students`).pipe(
-      map(response => {
-        return response.message;
-      })
-    ).toPromise()
+    this.staff = await this.courses.getStaff();
+    this.groups = await this.courses.getGroups();
+    this.students = await this.courses.getStudents();
   }
 
   public staffUpdate(e) {

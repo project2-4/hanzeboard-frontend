@@ -58,13 +58,16 @@ export class AssignmentsOverviewComponent implements OnInit {
               return response.message;
             })
           ).toPromise();
+
+        Swal.fire(
+          'Verwijderd!',
+          'Course met succes verwijderd.',
+          'success'
+        );
+
       }
     }).then(() => {
-      Swal.fire(
-        'Verwijderd!',
-        'Course met succes verwijderd.',
-        'success'
-      );
+
     });
   }
 

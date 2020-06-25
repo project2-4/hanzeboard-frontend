@@ -44,14 +44,13 @@ export class CourseOverviewComponent implements OnInit {
         this.courses = await this.httpClient.get<any>(`${environment.apiEndpoint}/courses`).pipe(
           map(response => response.message)
         ).toPromise();
-      }
-    }).then(() => {
-      Swal.fire(
-        'Verwijderd!',
-        'Course met succes verwijderd.',
-        'success'
-      );
-    });;
-  }
 
+        Swal.fire(
+          'Verwijderd!',
+          'Course met succes verwijderd.',
+          'success'
+        );
+      }
+    });
+  }
 }
