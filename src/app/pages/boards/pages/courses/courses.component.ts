@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit {
         await this.router.navigate(['/dashboard']);
       } catch (e) {
         if (e.error.message) {
-          Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
+          Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide ' + e.error.errors[Object.keys(e.error.errors)[0]]});
         }
       }
     }

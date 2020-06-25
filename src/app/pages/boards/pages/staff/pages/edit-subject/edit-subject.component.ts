@@ -179,15 +179,13 @@ export class EditSubjectComponent implements OnInit {
         index++;
       });
 
-      console.log(formData);
-
       await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${courseId}/subjects/${subjectId}`, formData).toPromise();
 
       await this.router.navigate(['/staff/manage-subjects/' + courseId]);
     } catch (e) {
       console.log(e);
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
+        Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide ' + e.error.errors[Object.keys(e.error.errors)[0]]});
       }
     }
   }
