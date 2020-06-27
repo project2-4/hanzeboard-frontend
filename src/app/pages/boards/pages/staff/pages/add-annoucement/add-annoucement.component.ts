@@ -33,7 +33,7 @@ export class AddAnnoucementComponent implements OnInit {
           }).toPromise().then(() => {
             Swal.fire(
               'Aangemaakt!',
-              'Je hebt met succes een announcement aangemaakt!',
+              'U heeft met succes een announcement aangemaakt!',
               'success'
             );
           });

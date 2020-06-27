@@ -183,7 +183,6 @@ export class EditSubjectComponent implements OnInit {
 
       await this.router.navigate(['/staff/manage-subjects/' + courseId]);
     } catch (e) {
-      console.log(e);
       if (e.error.message) {
         Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide. ' + e.error.errors[Object.keys(e.error.errors)[0]]});
       }

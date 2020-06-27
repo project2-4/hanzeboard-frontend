@@ -33,11 +33,11 @@ export class ReportAbsentComponent implements OnInit {
       let month = this.untillDate.month;
       let day = this.untillDate.day;
 
-      if(month < 10) {
+      if (month < 10) {
         month = '0' + month;
       }
 
-      if(day < 10) {
+      if (day < 10) {
         day = '0' + day;
       }
 

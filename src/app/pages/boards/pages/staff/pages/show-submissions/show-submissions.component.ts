@@ -31,7 +31,5 @@ export class ShowSubmissionsComponent implements OnInit {
         return response.message;
       })
     ).toPromise();
-
-    console.log(this.submissions);
   }
 }

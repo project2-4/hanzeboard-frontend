@@ -3,7 +3,7 @@
     <label for="select-teacher">Docent</label>
     <select id="select-teacher" class="form-control" [(ngModel)]="selectedStaff">
       <option value="" selected disabled>Selecteer docent</option>
-      <option *ngFor="let teacher of staff" [value]="teacher.id">{{ teacher.abbreviation }}</option>
+      <option *ngFor="let teacher of staff" [value]="teacher.id">{{ teacher.abbreviation + " - " + teacher.user.full_name}}</option>
     </select>
   </div>
 </div>

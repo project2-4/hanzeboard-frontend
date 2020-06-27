@@ -43,15 +43,12 @@ export class SubjectComponent implements OnInit {
 
         return item;
       });
-
-      console.log(this.page);
     });
 
     const assigments =  await this.httpClient.get<any>(`${environment.apiEndpoint}/courses/${this.course}/subjects/${this.subject}/my-submission`).pipe(
       map(r => r.message)
     ).toPromise();
     this.assigments = assigments;
-    console.log(this.assigments);
   }
 
   async upload(event, assigmentId) {
