@@ -9,11 +9,19 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  async save(type: string, body: any) {
-    return await this.httpClient.post<any>(`${environment.apiEndpoint}/${type}`, body).toPromise();
+  async save(type: string, body: any, id: string) {
+    if(type === 'student') {
+      type = 'students';
+    }
+
+    return await this.httpClient.put<any>(`${environment.apiEndpoint}/${type}/${id}`, body).toPromise();
   }
 
   async create(type: string, body: any) {
+    if(type === 'student') {
+      type = 'students';
+    }
+
     return await this.httpClient.post<any>(`${environment.apiEndpoint}/${type}`, body).toPromise();
   }
 }

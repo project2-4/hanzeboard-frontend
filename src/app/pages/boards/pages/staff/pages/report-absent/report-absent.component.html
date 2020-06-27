@@ -3,16 +3,15 @@
     <label for="select-teacher">Docent</label>
     <select id="select-teacher" class="form-control" [(ngModel)]="selectedStaff">
       <option value="" selected disabled>Selecteer docent</option>
-      <option *ngFor="let teacher of staff" [value]="teacher.id">{{ teacher.abbreviation + " - " + teacher.user.full_name}}</option>
+      <option *ngFor="let teacher of staff" [value]="teacher.id">{{ teacher.user.full_name }} ({{ teacher.abbreviation }})</option>
     </select>
   </div>
 </div>
 
 <div class="row mb-4">
   <div class="col">
-    <label for="select-teacher">Tot en met</label>
-    <input class="form-control" placeholder="yyyy-mm-dd" (click)="d.toggle()"
-           name="dp" [(ngModel)]="untillDate" ngbDatepicker #d="ngbDatepicker">
+    <label for="select-teacher">Tot en met (yyyy-mm-dd)</label>
+    <input class="form-control" type="text" [(ngModel)]="untillDate">
   </div>
 </div>
 
