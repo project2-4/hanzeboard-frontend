@@ -10,9 +10,8 @@
 
 <div class="row mb-4">
   <div class="col">
-    <label for="select-teacher">Tot en met</label>
-    <input class="form-control" placeholder="yyyy-mm-dd" (click)="d.toggle()"
-           name="dp" [(ngModel)]="untillDate" ngbDatepicker #d="ngbDatepicker">
+    <label for="select-teacher">Tot en met (yyyy-mm-dd)</label>
+    <input class="form-control" type="text" [(ngModel)]="untillDate">
   </div>
 </div>
 

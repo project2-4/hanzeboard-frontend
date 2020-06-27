@@ -31,22 +31,35 @@ export class AddUserComponent implements OnInit {
   }
 
   public async submit() {
-    const body = {
-      first_name: this.firstName,
-      infix: this.infix,
-      email: this.email,
-      last_name: this.lastName,
-      role_id: 1,
-      abbreviation: this.abbreviation,
-      office_location: this.officeLocation
-    };
+    let body = {};
+
+    if(this.type === 'student') {
+      body = {
+        first_name: this.firstName,
+        infix: this.infix,
+        email: this.email,
+        last_name: this.lastName,
+        role_id: 1,
+        student_number: this.studentNumber
+      }
+    } else {
+      body = {
+        first_name: this.firstName,
+        infix: this.infix,
+        email: this.email,
+        last_name: this.lastName,
+        role_id: 1,
+        abbreviation: this.abbreviation,
+        office_location: this.officeLocation
+      }
+    }
 
     try {
       await this.user.create(this.type, body);
       await this.router.navigate(['/staff/user-management']);
     } catch (e) {
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
+        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message});
       }
     }
   }

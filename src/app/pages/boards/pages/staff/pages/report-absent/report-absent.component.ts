@@ -30,20 +30,9 @@ export class ReportAbsentComponent implements OnInit {
 
   public async submit() {
     try {
-      let month = this.untillDate.month;
-      let day = this.untillDate.day;
-
-      if(month < 10) {
-        month = '0' + month;
-      }
-
-      if(day < 10) {
-        day = '0' + day;
-      }
-
       await this.httpClient.put(`${environment.apiEndpoint}/staff/${this.selectedStaff}/status`, {
         status: this.selectedReason,
-        until: `${this.untillDate.year}-${month}-${day}`
+        until: `${this.untillDate}`
       }).toPromise();
 
       Swal.fire('Goed gedaan!', 'Absentie toegevoegd!', 'success');
