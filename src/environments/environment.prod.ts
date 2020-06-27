@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'http://localhost:8000/api',
-  downloads: 'http://localhost:8000/'
+  apiEndpoint: 'https://moetikwcpapierhalen.nl/api',
+  downloads: 'https://moetikwcpapierhalen.nl/'
 };

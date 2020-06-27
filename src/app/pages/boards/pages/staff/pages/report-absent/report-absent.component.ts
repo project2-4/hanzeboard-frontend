@@ -39,7 +39,7 @@ export class ReportAbsentComponent implements OnInit {
       await this.router.navigate(['/staff']);
 
     } catch (e) {
-      Swal.fire({icon: 'error', title: 'Oops...', text: 'Er ging iets mis!'});
+      Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide. ' + e.error.errors[Object.keys(e.error.errors)[0]]});
     }
   }
 
