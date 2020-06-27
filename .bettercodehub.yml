@@ -1,0 +1,5 @@
+exclude:
+- /src/app/pages/boards/pages/staff/staff-routing.module.ts
+- /src/app/pages/boards/boards-routing.module.ts
+- /karma.conf.js
+- /e2e/protractor.conf.js

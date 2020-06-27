@@ -59,8 +59,6 @@ export class AssignmentsOverviewComponent implements OnInit {
         );
 
       }
-    }).then(() => {
-
     });
   }
 

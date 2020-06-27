@@ -12,8 +12,8 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/assets/icons/android-chrome-48x48.png",
-          "/assets/icons/android-chrome-144x144.webp"
+          "/assets/icons/logo.svg",
+          "/assets/icons/logo.webp"
         ]
       }
     }, {

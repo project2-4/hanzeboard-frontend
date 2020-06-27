@@ -57,12 +57,10 @@ export class ImportGradesComponent implements OnInit {
 
 
   onSelect(event) {
-    console.log(event);
     this.files.push(...event.addedFiles);
   }
 
   onRemove(event) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -78,7 +76,7 @@ export class ImportGradesComponent implements OnInit {
       await this.router.navigate(['/staff']);
     } catch (e) {
       if (e.error.message) {
-        Swal.fire({icon: 'error', title: 'Oops...', text: e.error.message + ' ' + e.error.errors.content[0]});
+        Swal.fire({icon: 'error', title: 'Oops... gegeven data is niet valide. ' + e.error.errors[Object.keys(e.error.errors)[0]]});
       }
     }
   }
