@@ -23,8 +23,7 @@
 <div class="row mb-4">
   <div class="col">
     <label for="deadline">Deadline</label>
-    <input class="form-control" placeholder="yyyy-mm-dd" (click)="d.toggle()"
-           name="dp" [(ngModel)]="deadline" ngbDatepicker #d="ngbDatepicker">
+    <input class="form-control" [(ngModel)]="deadline" type="date" id="deadline" placeholder="dd-mm-yyyy">
   </div>
 </div>
 

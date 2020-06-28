@@ -15,8 +15,7 @@ export class EditAssignmentsComponent implements OnInit {
   public name = '';
   public credits = '5';
   public deadline: any = '';
-
-
+  public deadlineUS: any = '';
   public courseId;
   public subjectId;
   public assigmentId;
@@ -37,6 +36,7 @@ export class EditAssignmentsComponent implements OnInit {
     this.name = assigment.name;
     this.credits = assigment.credits;
     this.deadline = assigment.deadline_formatted;
+    this.deadlineUS = assigment.deadline.split('T')[0];
   }
 
   public async submit() {
@@ -45,7 +45,7 @@ export class EditAssignmentsComponent implements OnInit {
         name: this.name,
         type: 'open',
         credits: this.credits,
-        deadline: `${this.deadline}`
+        deadline: `${this.deadlineUS}`
       }).toPromise();
 
       await this.router.navigate([`/staff/manage-subjects/${this.courseId}/subjects/${this.subjectId}/assignments-overview`]);

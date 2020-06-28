@@ -27,23 +27,12 @@ export class AddAssignmentsComponent implements OnInit {
   }
 
   public async submit() {
-    let month = this.deadline.month;
-    let day = this.deadline.day;
-
-    if(month < 10) {
-      month = '0' + month;
-    }
-
-    if(day < 10) {
-      day = '0' + day;
-    }
-
     try {
       await this.httpClient.post<any>(`${environment.apiEndpoint}/courses/${this.courseId}/subjects/${this.subjectId}/assignments`, {
         name: this.name,
         type: 'open',
         credits: this.credits,
-        deadline: `${this.deadline.year}-${month}-${day}`
+        deadline: this.deadline
       }).toPromise();
 
       await this.router.navigate([`/staff/manage-subjects/${this.courseId}/subjects/${this.subjectId}/assignments-overview`]);
