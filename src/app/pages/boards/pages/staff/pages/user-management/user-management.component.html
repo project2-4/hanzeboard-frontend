@@ -61,16 +61,16 @@
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>
-          <button class="btn btn-primary float-right" routerLink="/staff/user-management/student/add">Student aanmaken
+          <button class="btn btn-outline-primary float-right" routerLink="/staff/user-management/student/add">Student aanmaken
           </button>
         </th>
         <td mat-cell *matCellDef="let row">
           <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-1" title="Wijzig student"
+            <button class="btn btn-sm btn-primary mr-1" title="Wijzig student"
                     [routerLink]="'/staff/user-management/student/edit/' + row.id">
               <fa-icon [icon]="faEdit"></fa-icon>
             </button>
-            <button class="btn btn-danger" title="Verwijder student" (click)="deleteStudent(row.id)">
+            <button class="btn btn-sm btn-danger" title="Verwijder student" (click)="deleteStudent(row.id)">
               <fa-icon [icon]="faTrashAlt"></fa-icon>
             </button>
           </div>
