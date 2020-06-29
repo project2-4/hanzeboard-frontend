@@ -18,12 +18,20 @@ export class CourseService {
     ).toPromise();
   }
 
+  async getAllStaff() {
+    return await this.httpClient.get<any>(`${environment.apiEndpoint}/staff/all`).pipe(
+      map(response => {
+        return response.message;
+      })
+    ).toPromise();
+  }
+
   async getGroups() {
     return await this.httpClient.get<any>(`${environment.apiEndpoint}/groups`).pipe(
       map(response => {
         return response.message;
       })
-    ).toPromise()
+    ).toPromise();
   }
 
   async getStudents() {
@@ -31,7 +39,7 @@ export class CourseService {
       map(response => {
         return response.message;
       })
-    ).toPromise()
+    ).toPromise();
   }
 
 }

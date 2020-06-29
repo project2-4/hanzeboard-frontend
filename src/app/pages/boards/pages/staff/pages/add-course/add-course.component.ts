@@ -31,7 +31,7 @@ export class AddCourseComponent implements OnInit {
   constructor(private httpClient: HttpClient, private router: Router, private courses: CourseService) { }
 
   async ngOnInit() {
-    this.staff = await this.courses.getStaff();
+    this.staff = await this.courses.getAllStaff();
     this.groups = await this.courses.getGroups();
     this.students = await this.courses.getStudents();
   }

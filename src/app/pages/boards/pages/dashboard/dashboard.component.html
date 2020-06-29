@@ -7,7 +7,7 @@
       <li class="list-group-item">
         <a class="nav-link" routerLink="/absentees">Ziekmeldingen</a>
       </li>
-      <li class="list-group-item">
+      <li class="list-group-item" *appIsStaff="'student'">
         <a class="nav-link" routerLink="/latest-grades">Cijfers</a>
       </li>
     </ul>
