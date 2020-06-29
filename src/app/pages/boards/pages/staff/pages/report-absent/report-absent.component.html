@@ -3,15 +3,10 @@
     <label for="select-teacher">Docent</label>
     <select id="select-teacher" class="form-control" [(ngModel)]="selectedStaff">
       <option value="" selected disabled>Selecteer docent</option>
-      <option *ngFor="let teacher of staff" [value]="teacher.id">{{ teacher.user.full_name }} ({{ teacher.abbreviation }})</option>
+      <option *ngFor="let teacher of staff" [value]="teacher.id">
+        {{ teacher.user.full_name }} ({{ teacher.abbreviation }}): {{ teacher.status.status | translate }}
+      </option>
     </select>
-  </div>
-</div>
-
-<div class="row mb-4">
-  <div class="col">
-    <label for="select-teacher">Tot en met</label>
-    <input class="form-control" type="date" [(ngModel)]="untillDate" placeholder="dd-mm-yyyy">
   </div>
 </div>
 
@@ -23,13 +18,21 @@
 <!--      <option value="available">Aanwezig</option>-->
       <option value="leave">Vrij</option>
       <option value="sick">Ziek</option>
+      <option value="available">Present</option>
     </select>
+  </div>
+</div>
+
+<div class="row mb-4" *ngIf="selectedReason !== 'available'">
+  <div class="col">
+    <label for="select-teacher">Tot en met</label>
+    <input class="form-control" type="date" [(ngModel)]="untillDate" placeholder="dd-mm-yyyy">
   </div>
 </div>
 
 
 <div class="row mb-4">
   <div class="col">
-    <button class="btn btn-block btn-primary" [disabled]="selectedReason.length === 0 || selectedStaff.length === 0 || untillDate.length === 0" (click)="submit()">Absent melden</button>
+    <button class="btn btn-block btn-primary" [disabled]="selectedReason.length === 0 || selectedStaff.length === 0" (click)="submit()">Absent melden</button>
   </div>
 </div>
